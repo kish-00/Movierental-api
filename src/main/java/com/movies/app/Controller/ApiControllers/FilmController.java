@@ -18,24 +18,24 @@ public class FilmController {
     @Autowired
     private FilmRepo filmRepo;
 
-    // get all countries
+    // get all films
     @GetMapping(value = "/films")
     public List<Film> getAllFilms(){
         return filmRepo.findAll();
     }
-    //create Employee Rest API
+    //create film Rest API
     @PostMapping("/films")
     public Film createFilm(@RequestBody Film film){
         return filmRepo.save(film);
     }
-    //get countries by id
+    //get film by id
     @GetMapping(value = "/films/{id}")
     public ResponseEntity<Film> getFilmById(@PathVariable int id){
         Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film not exist with id:" + id));
         return ResponseEntity.ok(film);
     }
 
-    // update country Rest API
+    // update film Rest API
     @PutMapping(value = "/films/{id}")
     public ResponseEntity<Film> updateFilms(@PathVariable int id,@RequestBody Film filmDetails){
         Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film not exist with id:" + id));
@@ -56,7 +56,7 @@ public class FilmController {
         filmRepo.save(filmDetails);
         return ResponseEntity.ok(film);
     }
-    // delete country from rest API
+    // delete film from rest API
     @DeleteMapping(value = "/films/{id}")
     public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
         Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film not exist with id:" + id));

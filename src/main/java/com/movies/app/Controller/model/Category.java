@@ -1,10 +1,10 @@
 package com.movies.app.Controller.model;
 
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +13,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id1")
+    @Column(name = "Id")
     private int categoryID;
 
     @Column(name = "name")

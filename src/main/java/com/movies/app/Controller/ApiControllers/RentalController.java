@@ -1,7 +1,7 @@
 package com.movies.app.Controller.ApiControllers;
 
-import com.movies.app.Controller.Repository.LanguageRepo;
-import com.movies.app.Controller.Repository.PaymentRepo;
+// import com.movies.app.Controller.Repository.LanguageRepo;
+// import com.movies.app.Controller.Repository.PaymentRepo;
 import com.movies.app.Controller.Repository.RentalRepo;
 import com.movies.app.Controller.exception.ResourceNotFoundException;
 
@@ -21,27 +21,27 @@ public class RentalController {
     @Autowired
     private RentalRepo rentalRepo;
 
-    // get all countries
+    // get all rentals
     @GetMapping(value = "/rental")
     public List<Rental> getAllLanguage(){
         return rentalRepo.findAll();
 
     }
 
-    //create Employee Rest API
+    //create rental Rest API
     @PostMapping("/rental")
     public Rental createFilm(@RequestBody Rental film){
         return rentalRepo.save(film);
     }
 
-    //get countries by id
+    //get rental by id
     @GetMapping(value = "/rental/{id}")
     public ResponseEntity<Rental> getFilmById(@PathVariable int id){
         Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental not exist with id:" + id));
         return ResponseEntity.ok(film);
     }
 
-    // update country Rest API
+    // update rental Rest API
     @PutMapping(value = "/rental/{id}")
     public ResponseEntity<Rental> updateFilms(@PathVariable int id,@RequestBody Rental filmDetails){
         Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental not exist with id:" + id));
@@ -52,7 +52,7 @@ public class RentalController {
         return ResponseEntity.ok(film);
     }
 
-    // delete country from rest API
+    // delete rental from rest API
     @DeleteMapping(value = "/rental/{id}")
     public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
         Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental not exist with id:" + id));

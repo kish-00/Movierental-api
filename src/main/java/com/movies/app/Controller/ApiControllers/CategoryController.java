@@ -21,26 +21,26 @@ public class CategoryController {
     private CategoryRepo categoryRepo;
 
 
-    // get all countries
+    // get all categories
     @GetMapping(value = "/categories")
     public List<Category> getAllCategories(){
         return categoryRepo.findAll();
     }
-    //create Employee Rest API
+    //create category Rest API
     @PostMapping("/categories")
     public Category createCategory(@RequestBody Category category){
         return categoryRepo.save(category);
 
     }
 
-    //get address by id
+    //get category by id
     @GetMapping(value = "/categories/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable int id){
         Category category= categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Category not exist with id:" + id));
         return ResponseEntity.ok(category);
     }
 
-    // update country Rest API
+    // update category Rest API
     @PutMapping(value = "/categories/{id}")
     public ResponseEntity<Category> updateCategory(@PathVariable int id,@RequestBody Category categoryDetails){
         Category category= categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Category not exist with id:" + id));
@@ -52,7 +52,7 @@ public class CategoryController {
         return ResponseEntity.ok(category);
     }
 
-    // delete country from rest API
+    // delete category from rest API
     @DeleteMapping(value = "/categories/{id}")
     public  ResponseEntity<HttpStatus> deleteActor(@PathVariable int id){
         Category category= categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Categories not exist with id:" + id));

@@ -1,6 +1,6 @@
 package com.movies.app.Controller.ApiControllers;
 
-import com.movies.app.Controller.Repository.LanguageRepo;
+//import com.movies.app.Controller.Repository.LanguageRepo;
 import com.movies.app.Controller.Repository.PaymentRepo;
 import com.movies.app.Controller.exception.ResourceNotFoundException;
 
@@ -21,25 +21,25 @@ public class PaymentController {
     @Autowired
     private PaymentRepo paymentRepo;
 
-    // get all countries
+    // get all payments
     @GetMapping(value = "/payment")
     public List<Payment> getAllLanguage(){
         return paymentRepo.findAll();
 
     }
-    //create Employee Rest API
+    //create payment Rest API
     @PostMapping("/payment")
     public Payment createFilm(@RequestBody Payment film){
         return paymentRepo.save(film);
     }
-    //get countries by id
+    //get payment by id
     @GetMapping(value = "/payment/{id}")
     public ResponseEntity<Payment> getFilmById(@PathVariable int id){
         Payment film=paymentRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment not exist with id:" + id));
         return ResponseEntity.ok(film);
     }
 
-    // update country Rest API
+    // update payment Rest API
     @PutMapping(value = "/payment/{id}")
     public ResponseEntity<Payment> updateFilms(@PathVariable int id,@RequestBody Payment filmDetails){
         Payment film=paymentRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment not exist with id:" + id));
@@ -49,7 +49,7 @@ public class PaymentController {
         paymentRepo.save(filmDetails);
         return ResponseEntity.ok(film);
     }
-    // delete country from rest API
+    // delete payment from rest API
     @DeleteMapping(value = "/payment/{id}")
     public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
         Payment film=paymentRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment not exist with id:" + id));

@@ -24,12 +24,12 @@ public class CountryControllers {
         return countryRepo.findAll();
     }
 
-    //create Employee Rest API
+    //create country Rest API
     @PostMapping("/countries")
     public Country createCountry(@RequestBody Country country){
         return countryRepo.save(country);
     }
-    //get countries by id
+    //get country by id
     @GetMapping(value = "/countries/{id}")
     public ResponseEntity<Country> getContryById(@PathVariable int id){
         Country country=countryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Country not exist with id:" + id));

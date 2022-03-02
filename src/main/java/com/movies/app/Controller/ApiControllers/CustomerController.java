@@ -19,25 +19,25 @@ public class CustomerController {
     @Autowired
     private CustomerRepo customerRepo;
 
-    // get all countries
+    // get all customers
     @GetMapping(value = "/customers")
     public List<Customer> getAllCustomers(){
         return customerRepo.findAll();
     }
 
-    //create Employee Rest API
+    //create customer Rest API
     @PostMapping("/customers")
     public Customer createCustomer(@RequestBody Customer customer){
         return customerRepo.save(customer);
     }
-    //get countries by id
+    //get customer by id
     @GetMapping(value = "/customers/{id}")
     public ResponseEntity<Customer> getContryById(@PathVariable int id){
         Customer customer=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer not exist with id:" + id));
         return ResponseEntity.ok(customer);
     }
 
-    // update country Rest API
+    // update customer Rest API
     @PutMapping(value = "/customers/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable int id,@RequestBody Customer customerDetails){
         Customer customer=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer not exist with id:" + id));
@@ -51,7 +51,7 @@ public class CustomerController {
         customerRepo.save(customerDetails);
         return ResponseEntity.ok(customer);
     }
-    // delete country from rest API
+    // delete customer from rest API
     @DeleteMapping(value = "/customers/{id}")
     public  ResponseEntity<HttpStatus> deleteCountry(@PathVariable int id){
         Customer country=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer not exist with id:" + id));

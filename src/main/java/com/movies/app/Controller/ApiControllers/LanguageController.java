@@ -22,18 +22,18 @@ public class LanguageController {
     private LanguageRepo languageRepo;
 
 
-    // get all countries
+    // get all languages
     @GetMapping(value = "/language")
     public List<Language> getAllLanguage(){
         return languageRepo.findAll();
 
     }
-    //create Employee Rest API
+    //create language Rest API
     @PostMapping("/language")
     public Language createFilm(@RequestBody Language film){
         return languageRepo.save(film);
     }
-    //get countries by id
+    //get language by id
     @GetMapping(value = "/language/{id}")
     public ResponseEntity<Language> getFilmById(@PathVariable int id){
         Language film=languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language not exist with id:" + id));
@@ -50,7 +50,7 @@ public class LanguageController {
         languageRepo.save(filmDetails);
         return ResponseEntity.ok(film);
     }
-    // delete country from rest API
+    // delete language from rest API
     @DeleteMapping(value = "/language/{id}")
     public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
         Language film=languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language not exist with id:" + id));
