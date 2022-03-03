@@ -1,7 +1,5 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -16,7 +14,7 @@ public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private int filmID;
 
     @Column(name = "title")
@@ -44,13 +42,13 @@ public class Film {
     private String rating;
 
     @Column(name = "lastUpdate")
-    private Timestamp last_update;
+    private Timestamp lastUpdate;
 
     @Column(name = "specialFeatures")
     private String specialFeatures;
 
-    @Column(name = "fullText")
-    private String fulltext;
+    @Column(name = "fullTxt")
+    private String fullTxt;
 
     @OneToMany(mappedBy = "filmInventory")
     private List<Inventory> inventories;

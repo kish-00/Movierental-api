@@ -1,12 +1,8 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
-//import java.util.List;
-
 
 @Entity
 @Table(name = "Rental")
@@ -32,16 +28,16 @@ public class Rental {
     private Staff staff1;
 
     @ManyToOne
-    private Customer customer1;
+    private Customer customer;
 
 
 
-    public int getRentalID() {
-        return rentalID;
+    public int getRentalId() {
+        return rentalId;
     }
 
-    public void setRentalID(int rentalID) {
-        this.rentalID = rentalID;
+    public void setRentalId(int rentalId) {
+        this.rentalId = rentalId;
     }
 
     public Date getRentalDate() {

@@ -17,8 +17,8 @@ public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private int actorID;
+    @Column(name = "id")
+    private int actorId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -33,11 +33,11 @@ public class Actor {
     private List<Film> films;
 
     public int getActorID() {
-        return actorID;
+        return actorId;
     }
 
-    public void setActorID(int actorID) {
-        this.actorID = actorID;
+    public void setActorID(int actorId) {
+        this.actorId = actorId;
     }
 
     public List<Film> getFilms() {

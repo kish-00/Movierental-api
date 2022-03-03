@@ -1,12 +1,9 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @Table(name = "Language")
@@ -14,7 +11,7 @@ public class Language {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private int languageID;
 
     @Column(name = "name")
@@ -23,7 +20,7 @@ public class Language {
     @Column(name = "lastUpdate")
     private Timestamp lastUpdate;
 
-    @OneToMany(mappedBy = "language1")
+    @OneToMany(mappedBy = "language")
     private List<Film> films = new ArrayList<Film>();
 
 
@@ -37,12 +34,12 @@ public class Language {
         this.films = films;
     }
 
-    public int getLanguageID() {
-        return languageID;
+    public int getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguageID(int languageID) {
-        this.languageID = languageID;
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
     }
 
     public String getName() {

@@ -1,7 +1,5 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -20,11 +18,11 @@ public class Store {
     private Timestamp lastUpdated;
 
 
-    @OneToMany(mappedBy = "store1")
+    @OneToMany(mappedBy = "store")
     private List<Staff> staff;
 
     @ManyToOne
-    Address address1;
+    Address address;
 
 
     public List<Staff> getStaff() {
@@ -35,12 +33,12 @@ public class Store {
         this.staff = staff;
     }
 
-    public int getStoreID() {
-        return storeID;
+    public int getStoreId() {
+        return storeId;
     }
 
-    public void setStoreID(int storeID) {
-        this.storeID = storeID;
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 
 

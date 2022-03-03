@@ -1,7 +1,5 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -12,8 +10,8 @@ import java.util.List;
 public class Customer implements rentalInterface,paymentInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private int customerID;
+    @Column(name = "id")
+    private int customerId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -27,21 +25,21 @@ public class Customer implements rentalInterface,paymentInterface {
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "lastUpdated")
-    private Timestamp last_Updated;
+    @Column(name = "lastUpdate")
+    private Timestamp lastUpdate;
 
-    @Column(name = "addressColumn")
+    @Column(name = "address")
     private int addressColumn;
 
-    @Column(name = "create_Date")
-    private Timestamp create_Date;
+    @Column(name = "createDate")
+    private Timestamp createDate;
 
     @ManyToOne
-    private Address address1;
+    private Address address;
 
 
 
-    @OneToMany(mappedBy = "customer1")
+    @OneToMany(mappedBy = "customer")
     private List<Rental> rentals = new ArrayList<Rental>();
 
 
@@ -78,28 +76,28 @@ public class Customer implements rentalInterface,paymentInterface {
         this.active = active;
     }
 
-    public Timestamp getLast_Updated() {
-        return last_Updated;
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_Updated(Timestamp last_Updated) {
-        this.last_Updated = last_Updated;
+    public void setLast_Updated(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
-    public Address getAddress1() {
-        return address1;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress1(Address address1) {
-        this.address1 = address1;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setCustomerID(int customerId) {
+        this.customerId = customerId;
     }
 
 
@@ -111,12 +109,12 @@ public class Customer implements rentalInterface,paymentInterface {
         this.addressColumn = addressColumn;
     }
 
-    public Timestamp getCreate_Date() {
-        return create_Date;
+    public Timestamp getCreateDate() {
+        return createDate;
     }
 
-    public void setCreate_Date(Timestamp create_Date) {
-        this.create_Date = create_Date;
+    public void setCreate_Date(Timestamp createDate) {
+        this.createDate = createDate;
     }
 
 

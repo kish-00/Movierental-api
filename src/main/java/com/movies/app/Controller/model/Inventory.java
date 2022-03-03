@@ -1,11 +1,7 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
-//import java.util.List;
-
 
 @Entity
 @Table(name = "Inventory")
@@ -13,7 +9,7 @@ public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private int inventoryID;
 
     @Column(name = "lastUpdated")
@@ -23,12 +19,12 @@ public class Inventory {
     @ManyToOne
     private Film filmInventory;
 
-    public int getInventoryID() {
-        return inventoryID;
+    public int getInventoryId() {
+        return inventoryId;
     }
 
-    public void setInventoryID(int inventoryID) {
-        this.inventoryID = inventoryID;
+    public void setInventoryId(int inventoryId) {
+        this.inventoryId = inventoryId;
     }
 
     public Timestamp getLastUpdated() {

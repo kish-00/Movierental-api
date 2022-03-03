@@ -1,7 +1,5 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -13,8 +11,8 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private int addressID;
+    @Column(name = "id")
+    private int addressId;
 
     @Column(name = "address")
     private String address;
@@ -25,17 +23,17 @@ public class Address {
     @Column(name = "district")
     private int district;
 
-    @Column(name = "postal_code")
-    private String postal_code;
+    @Column(name = "postalCode")
+    private String postalCode;
 
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "last_update")
-    private Timestamp last_Update;
+    @Column(name = "lastUpdate")
+    private Timestamp lastUpdate;
 
     @ManyToOne
-    private City city1;
+    private City city;
 
 
     @OneToMany(mappedBy = "address1")
@@ -47,12 +45,12 @@ public class Address {
     @OneToMany(mappedBy = "address1")
     private List<Store> stores = new ArrayList<Store>();
 
-    public int getAddressID() {
-        return addressID;
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setAddressID(int addressID) {
-        this.addressID = addressID;
+    public void setAddressID(int addressId) {
+        this.addressId = addressId;
     }
 
     public String getAddress() {
@@ -79,12 +77,12 @@ public class Address {
         this.district = district;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getPhone() {
@@ -95,12 +93,12 @@ public class Address {
         this.phone = phone;
     }
 
-    public Timestamp getLast_Update() {
-        return last_Update;
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_Update(Timestamp last_Update) {
-        this.last_Update = last_Update;
+    public void setLast_Update(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
 

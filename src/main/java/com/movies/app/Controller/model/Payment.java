@@ -1,11 +1,8 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
 
 @Entity
 @Table(name = "Payment")
@@ -14,7 +11,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    private int paymentID;
+    private int paymentId;
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -24,21 +21,21 @@ public class Payment {
 
 
     @ManyToOne
-    private Rental rental1;
+    private Rental rental;
 
     @ManyToOne
-    private Customer customer1;
+    private Customer customer;
 
     @ManyToOne
     private Staff staff1;
 
 
-    public int getPaymentID() {
-        return paymentID;
+    public int getPaymentId() {
+        return paymentId;
     }
 
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
     }
 
     public BigDecimal getAmount() {

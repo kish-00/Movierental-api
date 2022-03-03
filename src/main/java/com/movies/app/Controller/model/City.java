@@ -1,7 +1,5 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -13,8 +11,8 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private int cityID;
+    @Column(name = "id")
+    private int cityId;
 
     @Column(name = "city")
     private String city;
@@ -22,18 +20,18 @@ public class City {
     @Column(name = "lastUpdate")
     private Timestamp lastUpdate;
 
-    @OneToMany(mappedBy = "city1")
+    @OneToMany(mappedBy = "city")
     private List<Address> addresses = new ArrayList<Address>();
 
     @ManyToOne
     private Country country1;
 
-    public int getCityID() {
-        return cityID;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCityID(int cityID) {
-        this.cityID = cityID;
+    public void setCityID(int cityId) {
+        this.cityId = cityId;
     }
 
 

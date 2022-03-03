@@ -1,10 +1,7 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
-//import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,24 +10,24 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private int categoryID;
+    @Column(name = "id")
+    private int categoryId;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name="last_Update")
-    private Timestamp last_Update;
+    @Column(name="lastUpdate")
+    private Timestamp lastUpdate;
 
     @ManyToMany(mappedBy = "categories")
     private List<Film> films;
 
-    public int getCategoryID() {
-        return categoryID;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -41,12 +38,12 @@ public class Category {
         this.name = name;
     }
 
-    public Timestamp getLast_Update() {
-        return last_Update;
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_Update(Timestamp last_Update) {
-        this.last_Update = last_Update;
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public List<Film> getFilms() {

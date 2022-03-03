@@ -1,11 +1,8 @@
 package com.movies.app.Controller.model;
 
-//import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-
 
 @Entity
 @Table(name = "Staff")
@@ -13,7 +10,7 @@ public class Staff implements rentalInterface,paymentInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    private int staffID;
+    private int staffId;
 
 
 
@@ -30,12 +27,12 @@ public class Staff implements rentalInterface,paymentInterface {
     private boolean active;
 
     @Column(name = "lastUpdated")
-    private Timestamp last_Updated;
+    private Timestamp lastUpdated;
 
 
 
-    @Column(name = "paymentID")
-    private int paymentID;
+    @Column(name = "paymentId")
+    private int paymentId;
 
     @Column(name = "username")
     private String username;
@@ -44,17 +41,17 @@ public class Staff implements rentalInterface,paymentInterface {
     private String password;
 
     @Column(name = "pictreUrl")
-    private String pictureURL;
+    private String pictureUrl;
 
 
-    @OneToMany(mappedBy = "staff1")
+    @OneToMany(mappedBy = "staff")
     private List<Rental> rentals;
 
     @ManyToOne
-    private Address address1;
+    private Address address;
 
     @ManyToOne
-    private Store store1;
+    private Store store;
 
 //    @OneToMany(mappedBy = "staff1")
 //    private List<Payment> payments;
@@ -92,36 +89,36 @@ public class Staff implements rentalInterface,paymentInterface {
         this.active = active;
     }
 
-    public Timestamp getLast_Updated() {
-        return last_Updated;
+    public Timestamp getLastUpdated() {
+        return lastUpdated;
     }
 
-    public void setLast_Updated(Timestamp last_Updated) {
-        this.last_Updated = last_Updated;
+    public void setLastUpdated(Timestamp lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
-    public Address getAddress1() {
-        return address1;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress1(Address address1) {
-        this.address1 = address1;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public Store getStore1() {
-        return store1;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStore1(Store store1) {
-        this.store1 = store1;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public int getStaffID() {
         return staffID;
     }
 
-    public void setStaffID(int staffID) {
-        this.staffID = staffID;
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
     }
 
 
@@ -135,12 +132,12 @@ public class Staff implements rentalInterface,paymentInterface {
 
 
 
-    public int getPaymentID() {
-        return paymentID;
+    public int getPaymentId() {
+        return paymentId;
     }
 
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
     }
 
     public String getUsername() {
@@ -159,12 +156,12 @@ public class Staff implements rentalInterface,paymentInterface {
         this.password = password;
     }
 
-    public String getPictureURL() {
-        return pictureURL;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPictureURL(String pictureURL) {
-        this.pictureURL = pictureURL;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     @Override
