@@ -2,6 +2,8 @@ package com.movies.app.Controller.Model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Inventory")
 public class Inventory {

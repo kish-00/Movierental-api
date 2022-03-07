@@ -5,12 +5,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Language")
 public class Language {

@@ -1,6 +1,7 @@
 package com.movies.app.Controller.Model;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Actor")
 public class Actor {
