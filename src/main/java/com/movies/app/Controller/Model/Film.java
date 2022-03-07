@@ -1,4 +1,4 @@
-package com.movies.app.Controller.model;
+package com.movies.app.Controller.Model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -62,11 +62,11 @@ public class Film {
 
     //why?
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "film_actor",joinColumns = {@JoinColumn(referencedColumnName = "Id")},inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id")})
+    @JoinTable(name = "filmActor",joinColumns = {@JoinColumn(referencedColumnName = "Id")},inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id")})
     private List<Actor> actors;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "film_category",joinColumns = {@JoinColumn(referencedColumnName = "Id")},inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id1", insertable = false, updatable = false)})
+    @JoinTable(name = "filmCategory",joinColumns = {@JoinColumn(referencedColumnName = "Id")},inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id1", insertable = false, updatable = false)})
     private List<Category> categories;
 
     @ManyToOne

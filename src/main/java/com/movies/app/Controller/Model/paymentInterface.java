@@ -1,4 +1,4 @@
-package com.movies.app.Controller.model;
+package com.movies.app.Controller.Model;
 
 public interface paymentInterface {
     public void makePayment();
