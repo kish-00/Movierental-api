@@ -1,0 +1,36 @@
+package com.movies.app.Controller.model;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Getter;
+import  lombok.Setter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "City")
+public class City {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int cityId;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "lastUpdate")
+    private Timestamp lastUpdate;
+
+    @OneToMany(mappedBy = "city")
+    private List<Address> addresses = new ArrayList<Address>();
+
+    @ManyToOne
+    private Country country1;
+
+}
