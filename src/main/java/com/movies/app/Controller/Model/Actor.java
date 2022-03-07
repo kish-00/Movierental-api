@@ -1,4 +1,4 @@
-package com.movies.app.Controller.Model;
+package com.movies.app.Controller.M odel;
 
 import lombok.Getter;
 import lombok.Setter;
