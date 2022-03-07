@@ -21,22 +21,22 @@ public class Address {
     @Column(name = "id")
     private int addressId;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "address2")
     private String address2;
 
-    @Column(name = "district")
+    @Column(name = "district", nullable = false)
     private int district;
 
-    @Column(name = "postalCode")
+    @Column(name = "postalCode", nullable = false)
     private String postalCode;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "lastUpdate")
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
     @ManyToOne

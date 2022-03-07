@@ -23,38 +23,37 @@ public class Film {
     @Column(name = "id")
     private int filmID;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "releaseYear")
+    @Column(name = "releaseYear", nullable = false)
     private Date releaseYear;
 
-    @Column(name = "rentalDuration")
+    @Column(name = "rentalDuration", nullable = false)
     private byte rentalDuration;
 
-    @Column(name = "rentalRate")
+    @Column(name = "rentalRate", nullable = false)
     private BigDecimal rentalRate;
 
-    @Getter @Setter
-    @Column(name = "length")
+    @Column(name = "length", nullable = false)
     private int length;
 
-    @Column(name = "replacementCost")
+    @Column(name = "replacementCost", nullable = false)
     private BigDecimal replacementCost;
 
-    @Column(name = "rating")
+    @Column(name = "rating", nullable = false)
     private String rating;
 
-    @Column(name = "lastUpdate")
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
-    @Column(name = "specialFeatures")
+    @Column(name = "specialFeatures", nullable = false)
     private String specialFeatures;
 
-    @Column(name = "fullTxt")
+    @Column(name = "fullTxt", nullable = false)
     private String fullTxt;
 
     @OneToMany(mappedBy = "filmInventory")
@@ -70,6 +69,6 @@ public class Film {
     private List<Category> categories;
 
     @ManyToOne
-    private  Language language1;
+    private  Language language;
 
 }

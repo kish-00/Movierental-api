@@ -20,10 +20,10 @@ public class Category {
     @Column(name = "id")
     private int categoryId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="lastUpdate")
+    @Column(name="lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
     @ManyToMany(mappedBy = "categories")

@@ -19,19 +19,19 @@ public class Rental {
     @Column(name="Id")
     private int rentalID;
 
-    @Column(name = "rentalDate")
+    @Column(name = "rentalDate", nullable = false)
     private Date rentalDate;
 
-    @Column(name = "returnDate")
+    @Column(name = "returnDate", nullable = false)
     private Date returnDate;
 
-    @Column(name = "lastUpdate")
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
 
 
     @ManyToOne
-    private Staff staff1;
+    private Staff staff;
 
     @ManyToOne
     private Customer customer;

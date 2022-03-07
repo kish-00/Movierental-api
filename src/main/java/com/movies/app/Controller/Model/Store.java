@@ -19,7 +19,7 @@ public class Store {
     @Column(name = "Id")
     private  int storeID;
 
-    @Column(name = "lastUpdated")
+    @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;
 
 

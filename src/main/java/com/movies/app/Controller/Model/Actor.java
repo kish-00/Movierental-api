@@ -1,4 +1,4 @@
-package com.movies.app.Controller.M odel;
+package com.movies.app.Controller.Model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,19 +20,16 @@ public class Actor {
     @Column(name = "id")
     private int actorId;
 
-    @Column(name = "firstName")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
-    @Getter @Setter
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     private Timestamp timestamp;
 
     @ManyToMany(mappedBy = "actors")
     private List<Film> films;
-
-// use  jpa
 
 }

@@ -18,31 +18,31 @@ public class Staff implements rentalInterface,paymentInterface {
     @Column(name = "Id")
     private int staffId;
 
-    @Column(name = "firstName")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
-    @Column(name = "Email")
+    @Column(name = "Email", nullable = false)
     private String email;
 
-    @Column(name = "active")
+    @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(name = "lastUpdated")
+    @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;
 
-    @Column(name = "paymentId")
+    @Column(name = "paymentId", nullable = false)
     private int paymentId;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "pictureUrl")
+    @Column(name = "pictureUrl", nullable = false)
     private String pictureUrl;
 
 
@@ -55,8 +55,8 @@ public class Staff implements rentalInterface,paymentInterface {
     @ManyToOne
     private Store store;
 
-//    @OneToMany(mappedBy = "staff1")
-//    private List<Payment> payments;
+    @OneToMany(mappedBy = "staff")
+    private List<Payment> payments;
 
     @Override
     public void makePayment() {

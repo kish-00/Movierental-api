@@ -18,7 +18,7 @@ public class Inventory {
     @Column(name = "id")
     private int inventoryId;
 
-    @Column(name = "lastUpdated")
+    @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;
 
 

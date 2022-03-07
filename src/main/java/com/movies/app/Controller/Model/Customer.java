@@ -20,25 +20,25 @@ public class Customer implements rentalInterface,paymentInterface {
     @Column(name = "id")
     private int customerId;
 
-    @Column(name = "firstName")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "active")
+    @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(name = "lastUpdate")
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private int addressColumn;
 
-    @Column(name = "createDate")
+    @Column(name = "createDate", nullable = false)
     private Timestamp createDate;
 
     @ManyToOne

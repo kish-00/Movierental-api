@@ -21,16 +21,16 @@ public class City {
     @Column(name = "id")
     private int cityId;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "lastUpdate")
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
     @OneToMany(mappedBy = "city")
     private List<Address> addresses = new ArrayList<Address>();
 
     @ManyToOne
-    private Country country1;
+    private Country country;
 
 }

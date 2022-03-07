@@ -21,10 +21,10 @@ public class Country {
     @Column(name = "id")
     private int countryId;
 
-    @Column(name = "country")
+    @Column(name = "country", nullable = false)
     private String country;
 
-    @Column(name = "lastUpdate")
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
     @OneToMany(mappedBy = "country")

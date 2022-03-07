@@ -19,10 +19,10 @@ public class Payment {
     @Column(name = "Id")
     private int paymentId;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "paymentDate")
+    @Column(name = "paymentDate", nullable = false)
     private Date paymentDate;
 
 
@@ -33,6 +33,6 @@ public class Payment {
     private Customer customer;
 
     @ManyToOne
-    private Staff staff1;
+    private Staff staff;
 
   }
