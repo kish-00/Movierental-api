@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Category")

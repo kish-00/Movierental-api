@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Staff")
