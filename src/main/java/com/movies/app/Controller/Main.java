@@ -1,13 +1,13 @@
-SpringBootDemoApplication.java
-        package com.howtodoinjava.rest;
+package com.movies.app.Controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootDemoApplication {
+public class Main{
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootDemoApplication.class, args);
+        SpringApplication.run(Main.class, args);
     }
+
 }
