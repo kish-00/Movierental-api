@@ -5,14 +5,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Customer")
 public class Customer implements rentalInterface,paymentInterface {

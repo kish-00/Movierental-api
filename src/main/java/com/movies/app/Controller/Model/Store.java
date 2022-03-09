@@ -3,14 +3,12 @@ package com.movies.app.Controller.Model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Store")
 public class Store {
