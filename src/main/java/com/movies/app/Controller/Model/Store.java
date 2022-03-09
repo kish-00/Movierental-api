@@ -17,8 +17,8 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private  int storeID;
+    @Column(name = "id")
+    private  int id;
 
     @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;

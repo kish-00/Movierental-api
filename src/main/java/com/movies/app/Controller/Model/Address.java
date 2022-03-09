@@ -19,7 +19,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "addressId")
     private int addressId;
 
     @Column(name = "address", nullable = false)
@@ -44,12 +44,12 @@ public class Address {
     private City city;
 
 
-    @OneToMany(mappedBy = "address1")
+    @OneToMany(mappedBy = "address")
     private List<Customer> customers = new ArrayList<Customer>();
 
-    @OneToMany(mappedBy = "address1")
+    @OneToMany(mappedBy = "address")
     private List<Staff> staffs = new ArrayList<Staff>();
 
-    @OneToMany(mappedBy = "address1")
+    @OneToMany(mappedBy = "address")
     private List<Store> stores = new ArrayList<Store>();
 }

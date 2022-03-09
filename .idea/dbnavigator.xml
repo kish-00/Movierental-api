@@ -43,6 +43,7 @@
         <condition column="film_Id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
+    <filter-actions connection-id="114234fb-fd66-4bf8-a18c-f4fff31b21a1" dataset="movierental.category" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -75,7 +76,7 @@
     <connections>
       <connection id="114234fb-fd66-4bf8-a18c-f4fff31b21a1" active="true" signed="false">
         <database>
-          <name value="Connection" />
+          <name value="movierental" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />

@@ -21,8 +21,8 @@ public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int filmID;
+    @Column(name = "filmId")
+    private int filmId;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -60,13 +60,16 @@ public class Film {
     @OneToMany(mappedBy = "filmInventory")
     private List<Inventory> inventories;
 
-    //why?
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "filmActor",joinColumns = {@JoinColumn(referencedColumnName = "Id")},inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "film_actor",
+            joinColumns = {@JoinColumn(name = "film_Id", referencedColumnName = "filmId", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "actor_Id",referencedColumnName = "actorId")})
     private List<Actor> actors;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "filmCategory",joinColumns = {@JoinColumn(referencedColumnName = "Id")},inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id1", insertable = false, updatable = false)})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "film_category",
+            joinColumns = {@JoinColumn(name = "film_Id", referencedColumnName = "filmId", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "category_Id", referencedColumnName = "categoryId")})
     private List<Category> categories;
 
     @ManyToOne

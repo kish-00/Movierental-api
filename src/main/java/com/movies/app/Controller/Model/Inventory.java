@@ -18,7 +18,7 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int inventoryId;
+    private int id;
 
     @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;

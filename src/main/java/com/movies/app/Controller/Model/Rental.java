@@ -17,8 +17,8 @@ public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
-    private int rentalID;
+    @Column(name="id")
+    private int id;
 
     @Column(name = "rentalDate", nullable = false)
     private Date rentalDate;
@@ -28,8 +28,6 @@ public class Rental {
 
     @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
-
-
 
     @ManyToOne
     private Staff staff;

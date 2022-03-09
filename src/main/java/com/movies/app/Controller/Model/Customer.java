@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Customer implements rentalInterface,paymentInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "customerId")
     private int customerId;
 
     @Column(name = "firstName", nullable = false)

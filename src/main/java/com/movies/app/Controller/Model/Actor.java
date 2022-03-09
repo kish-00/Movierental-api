@@ -18,7 +18,7 @@ public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "actorId")
     private int actorId;
 
     @Column(name = "firstName", nullable = false)
@@ -27,7 +27,7 @@ public class Actor {
     @Column(name = "lastName", nullable = false)
     private String lastName;
 
-    @Column(name = "timestamp", nullable = false)
+    @Column(name = "lastUpdate", nullable = false)
     private Timestamp timestamp;
 
     @ManyToMany(mappedBy = "actors")

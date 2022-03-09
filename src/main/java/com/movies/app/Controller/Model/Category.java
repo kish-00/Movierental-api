@@ -18,10 +18,10 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "categoryId")
     private int categoryId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "nameOfCategory", nullable = false)
     private String name;
 
     @Column(name="lastUpdate", nullable = false)
