@@ -32,27 +32,25 @@ public class CityService {
     }
 
     //reads a city by its id
-    public ResponseEntity<City> getCityById(int id){
-        City city=cityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("City with id "+id+" does not exit."));
-        return ResponseEntity.ok(city);
+    public City getCityById(int id){
+        return cityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("City with id "+id+" does not exit."));
     }
 
-    //update city Rest API
-    public ResponseEntity<City> updateCity(int id, City cityInfo){
+    //update city
+    public City updateCity(int id, City cityInfo){
         City city= cityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("City with id:" +id+" does not exist."));
 
         city.setCountry(cityInfo.getCountry());
         city.setCity(cityInfo.getCity());
         city.setLastUpdate(city.getLastUpdate());
 
-        cityRepo.save(city);
-        return ResponseEntity.ok(city);
+        return cityRepo.save(city);
     }
 
     //delete category
-    public  ResponseEntity<HttpStatus> deleteActor(int id){
+    public String deleteCity(int id){
         City city= cityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("City with id:" + id+"does not exist."));
         cityRepo.delete(city);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "City with id "+id+" has been deleted";
     }
 }

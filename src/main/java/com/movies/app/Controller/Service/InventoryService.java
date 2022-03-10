@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Inventory;
 import com.movies.app.Controller.Repository.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,25 +30,23 @@ public class InventoryService {
     }
 
     //reads an inventory by its id
-    public ResponseEntity<Inventory> getInventoryById(int id){
-        Inventory inventory=inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory with id "+id+" does not exit."));
-        return ResponseEntity.ok(inventory);
+    public Inventory getInventoryById(int id){
+        return inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory with id "+id+" does not exit."));
     }
 
     //update inventory
-    public ResponseEntity<Inventory> updateFilms(int id, Inventory inventoryInfo){
+    public Inventory updateInventory(int id, Inventory inventoryInfo){
         Inventory inventory=inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory not exist with id:" + id));
 
         inventory.setLastUpdated(inventoryInfo.getLastUpdated());
 
-        inventoryRepo.save(inventory);
-        return ResponseEntity.ok(inventory);
+        return inventoryRepo.save(inventory);
     }
 
     // delete inventory from rest API
-    public  ResponseEntity<HttpStatus> deleteFilms(int id){
+    public  String deleteInventory(int id){
         Inventory film=inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory with id:" + id+" does not exist."));
         inventoryRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Inventory id "+id+" has been deleted";
     }
 }

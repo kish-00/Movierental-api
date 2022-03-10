@@ -1,11 +1,9 @@
-package com.example.MovieRentalSystem.Services;
+package com.movies.app.Controller.Service;
 
 import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Customer;
 import com.movies.app.Controller.Repository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,13 +30,12 @@ public class CustomerService {
     }
 
     //reads a customer by its id
-    public ResponseEntity<Customer> getCustomerById(int id){
-        Customer customer=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer with id "+id+" does not exit."));
-        return ResponseEntity.ok(customer);
+    public Customer getCustomerById(int id){
+        return customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer with id "+id+" does not exit."));
     }
 
     //update customer
-    public ResponseEntity<Customer> updateCustomer(int id, Customer customerInfo){
+    public Customer updateCustomer(int id, Customer customerInfo){
         Customer customer=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer with id:"+id+" does not exist."));
         customer.setAddressColumn(customerInfo.getAddressColumn());
         customer.setFirstName(customerInfo.getFirstName());
@@ -46,14 +43,13 @@ public class CustomerService {
         customer.setEmail(customerInfo.getEmail());
         customer.setCreateDate(customerInfo.getCreateDate());
 
-        customerRepo.save(customer);
-        return ResponseEntity.ok(customer);
+        return customerRepo.save(customer);
     }
 
     // delete customer
-    public  ResponseEntity<HttpStatus> deleteCountry(int id){
+    public  String deleteCustomer(int id){
         Customer country=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer not exist with id:" + id));
         customerRepo.delete(country);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Country with id "+id+" has been deleted";
     }
 }

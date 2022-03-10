@@ -32,26 +32,24 @@ public class RentalService {
     }
 
     //reads a rental by its id
-    public ResponseEntity<Rental> getRentalById(int id){
-        Rental rental=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id "+id+" does not exit."));
-        return ResponseEntity.ok(rental);
+    public Rental getRentalById(int id){
+        return rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id "+id+" does not exit."));
     }
 
     //update rental
-    public ResponseEntity<Rental> updateFilms(int id, Rental rentalInfo){
+    public Rental updateFilms(int id, Rental rentalInfo){
         Rental rental=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" + id+" does not exist."));
 
         rental.setRentalDate(rentalInfo.getRentalDate());
         rental.setReturnDate(rentalInfo.getReturnDate());
 
-        rentalRepo.save(rental);
-        return ResponseEntity.ok(rental);
+        return rentalRepo.save(rental);
     }
 
     // delete rental
-    public  ResponseEntity<HttpStatus> deleteFilms(int id){
+    public  String deleteFilms(int id){
         Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" + id+" does not exist."));
         rentalRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Rental with id "+id+" has been deleted!";
     }
 }

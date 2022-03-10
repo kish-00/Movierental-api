@@ -32,13 +32,12 @@ public class AddressService {
     }
 
     //reads an address by its id
-    public ResponseEntity<Address> getAddressById(int id){
-        Address address=addressRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Address with id "+id+" does not exit."));
-        return ResponseEntity.ok(address);
+    public Address getAddressById(int id){
+        return addressRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Address with id "+id+" does not exit."));
     }
 
     //update address Rest API
-    public ResponseEntity<Address> updateAddress(int id, Address addressInfo){
+    public Address updateAddress(int id, Address addressInfo){
         Address address=addressRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Address with id "+id+" does not exist."));
 
         address.setAddress(addressInfo.getAddress());
@@ -48,14 +47,13 @@ public class AddressService {
         address.setPhone(addressInfo.getPhone());
         address.setLastUpdate(addressInfo.getLastUpdate());
 
-        addressRepo.save(address);
-        return ResponseEntity.ok(address);
+        return addressRepo.save(address);
     }
 
     // delete address from rest API
-    public  ResponseEntity<HttpStatus> deleteActor(int id) {
+    public  String deleteAddress(int id) {
         Address address=addressRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Address with id: "+id+" does not exist."));
         addressRepo.delete(address);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Address with id "+id+" has been deleted!";
     }
 }

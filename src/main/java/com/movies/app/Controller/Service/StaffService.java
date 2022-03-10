@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Staff;
 import com.movies.app.Controller.Repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,13 +30,12 @@ public class StaffService {
     }
 
     //reads a staff by its id
-    public ResponseEntity<Staff> getStaffById(int id){
-        Staff staff=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id "+id+" does not exit."));
-        return ResponseEntity.ok(staff);
+    public Staff getStaffById(int id){
+        return staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id "+id+" does not exit."));
     }
 
     //update staff
-    public ResponseEntity<Staff> updateFilms(int id, Staff staffInfo){
+    public Staff updateStaff(int id, Staff staffInfo){
         Staff staff=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
 
         staff.setPaymentId(staffInfo.getPaymentId());
@@ -50,14 +47,13 @@ public class StaffService {
         staff.setLastUpdated(staffInfo.getLastUpdated());
         staff.setPictureUrl(staff.getPictureUrl());
 
-        staffRepo.save(staff);
-        return ResponseEntity.ok(staff);
+        return staffRepo.save(staff);
     }
 
     // delete staff from rest API
-    public  ResponseEntity<HttpStatus> deleteFilms(int id){
+    public  String deleteStaff(int id){
         Staff film=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
         staffRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Staff id "+id+" has been deleted!";
     }
 }

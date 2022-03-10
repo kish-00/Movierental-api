@@ -32,26 +32,24 @@ public class LanguageService {
     }
 
     //reads a language by its id
-    public ResponseEntity<Language> getLanguageById(int id){
-        Language language=languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language with id "+id+" does not exit."));
-        return ResponseEntity.ok(language);
+    public Language getLanguageById(int id){
+        return languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language with id "+id+" does not exit."));
     }
 
     //update language
-    public ResponseEntity<Language> updateFilms(int id, Language languageInfo){
+    public Language updateLanguage(int id, Language languageInfo){
         Language language=languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language with id:"+id+" does not exist."));
 
         language.setName(languageInfo.getName());
         language.setLastUpdate(languageInfo.getLastUpdate());
 
-        languageRepo.save(language);
-        return ResponseEntity.ok(language);
+        return languageRepo.save(language);
     }
 
     // delete language
-    public  ResponseEntity<HttpStatus> deleteFilms(int id){
+    public  String deleteLanguage(int id){
         Language film=languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language with id:" + id+" does not exist."));
         languageRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Language id "+id+" has been deleted";
     }
 }

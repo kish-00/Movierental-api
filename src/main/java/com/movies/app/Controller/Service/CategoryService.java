@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Category;
 import com.movies.app.Controller.Repository.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -33,26 +31,24 @@ public class CategoryService {
     }
 
     //reads a category by its id
-    public ResponseEntity<Category> getCategoryById(int id){
-        Category category=categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Category with id "+id+" does not exit."));
-        return ResponseEntity.ok(category);
+    public Category getCategoryById(int id){
+        return categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Category with id "+id+" does not exit."));
     }
 
     //update category Rest API
-    public ResponseEntity<Category> updateCategory(int id, Category categoryInfo){
+    public Category updateCategory(int id, Category categoryInfo){
         Category category= categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Category with id:" +id+" does not exist."));
 
         category.setName(categoryInfo.getName());
         category.setLastUpdate(categoryInfo.getLastUpdate());
 
-        categoryRepo.save(category);
-        return ResponseEntity.ok(category);
+        return categoryRepo.save(category);
     }
 
     //delete category
-    public  ResponseEntity<HttpStatus> deleteActor(@PathVariable int id){
+    public  String deleteCategory(@PathVariable int id){
         Category category= categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Categories with id:" + id+"does not exist."));
         categoryRepo.delete(category);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Category with id "+id+" has been deleted!";
     }
 }

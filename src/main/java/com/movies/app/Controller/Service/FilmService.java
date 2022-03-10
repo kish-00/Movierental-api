@@ -32,13 +32,12 @@ public class FilmService {
     }
 
     //reads a film by its id
-    public ResponseEntity<Film> getFilmById(int id){
-        Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id "+id+" does not exit."));
-        return ResponseEntity.ok(film);
+    public Film getFilmById(int id){
+        return filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id "+id+" does not exit."));
     }
 
     //update film
-    public ResponseEntity<Film> updateCustomer(int id, Film filmInfo){
+    public Film  updateFilm(int id, Film filmInfo){
         Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id:"+id+" does not exist."));
 
         film.setTitle(filmInfo.getTitle());
@@ -53,14 +52,13 @@ public class FilmService {
         film.setSpecialFeatures(filmInfo.getSpecialFeatures());
         film.setFullTxt(filmInfo.getFullTxt());
 
-        filmRepo.save(film);
-        return ResponseEntity.ok(film);
+        return filmRepo.save(film);
     }
 
     // delete film from rest API
-        public  ResponseEntity<HttpStatus> deleteFilms(int id){
+        public  String deleteFilms(int id){
         Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id: "+id+" does not exist."));
         filmRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Film with id "+id+" has been deleted!";
     }
 }
