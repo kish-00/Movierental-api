@@ -1,15 +1,9 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.PaymentRepo;
 import com.movies.app.Controller.Model.Payment;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,46 +11,42 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class PaymentController {
 
+    private final PaymentService paymentService;
+
     @Autowired
-    private PaymentRepo paymentRepo;
-
-    // get all payments
-    @GetMapping(value = "/payment", consumes = "application/JSON", produces = "application/JSON")
-    public List<Payment> getAllLanguage(){
-        return paymentRepo.findAll();
-
+    public PaymentController(PaymentService paymentService) {
+        this.paymentService = paymentService;
     }
 
-    //create payment
-    @PostMapping(value = "/payment", consumes = "application/JSON", produces = "application/JSON")
-    public Payment createFilm(@RequestBody Payment film){
-        return paymentRepo.save(film);
+    //adds a payment
+    @PostMapping(value = "/addPayment", consumes = "application/JSON")
+    public Payment handleAddPayment(@RequestBody Payment payment){
+        return paymentService.addPayment(payment);
     }
 
-    //get payment by id
+//add multiple payments
+
+    //gets all payments
+    @GetMapping(value = "/payments", produces = "application/JSON")
+    public List<Payment> handleGetAllPayments(){
+        return paymentService.getAllPayments();
+    }
+
+    //gets a payment by its id
     @GetMapping(value = "/payment/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Payment> getFilmById(@PathVariable int id){
-        Payment film=paymentRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment with id:" + id+" does not exist."));
-        return ResponseEntity.ok(film);
+    public Payment handleGetPaymentById(@PathVariable int id){
+        return paymentService.getPaymentById(id);
     }
 
-    // update payment
-    @PutMapping(value = "/payment/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Payment> updateFilms(@PathVariable int id,@RequestBody Payment filmInfo){
-        Payment film=paymentRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment with id:" + id+" does not exist."));
-
-        film.setAmount(filmInfo.getAmount());
-        film.setPaymentDate(filmInfo.getPaymentDate());
-
-        paymentRepo.save(film);
-        return ResponseEntity.ok(film);
+    //update payment Rest API
+    @PutMapping(value = "/updatePayment/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Payment handleUpdatePayment(int id, Payment paymentInfo){
+        return paymentService.updatePayment(id, paymentInfo);
     }
 
-    // delete payment
-    @DeleteMapping(value = "/payment/{id}")
-    public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
-        Payment film=paymentRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment with id:" + id+" does not exist."));
-        paymentRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // delete payment from rest API
+    @DeleteMapping(value = "/deletePayment/{id}")
+    public String handleDeletePayment(@PathVariable int id){
+        return paymentService.deletePayment(id);
     }
 }

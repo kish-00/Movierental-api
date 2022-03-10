@@ -1,61 +1,52 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.ActorRepo;
 import com.movies.app.Controller.Model.Actor;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/")
 public class ActorController {
-    @Autowired
-    private ActorRepo actorRepo;
 
-    //gets all actors
-    @GetMapping(value = "/actors", produces = "application/JSON")
-    public List<Actor> getAllActors(){
-        return actorRepo.findAll();
+    private final ActorService actorService;
+
+    @Autowired
+    public ActorController(ActorService actorService){
+        this.actorService = actorService;
     }
 
     //adds an actor
-    @PostMapping(value = "/actors", consumes = "application/JSON")
-    public Actor addActor(@RequestBody Actor actor){
-        return actorRepo.save(actor);
+    @PostMapping(value = "/addActor", consumes = "application/JSON")
+    public Actor handleAddActor(@RequestBody Actor actor){
+        return actorService.addActor(actor);
+    }
+
+//add multiple actors
+
+    //gets all actors
+    @GetMapping(value = "/actors", produces = "application/JSON")
+    public List<Actor> handleGetAllActors(){
+        return actorService.getAllActors();
     }
 
     //gets an actor by its id
-    @GetMapping(value = "/actors/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Actor> getActorById(@PathVariable int id){
-        Actor actor=actorRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Actor with id "+id+" does not exit."));
-        return ResponseEntity.ok(actor);
+    @GetMapping(value = "/actor/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Actor handleGetActorById(@PathVariable int id){
+        return actorService.getActorById(id);
     }
 
     //update actor Rest API
-    @PutMapping(value = "/actors/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Actor> updateActor(@PathVariable int id,@RequestBody Actor actorInfo){
-        Actor actor=actorRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Actor with id "+id+" does not exist."));
-
-        actor.setFirstName(actorInfo.getFirstName());
-        actor.setLastName(actorInfo.getLastName());
-        actor.setTimestamp(actorInfo.getTimestamp());
-
-        actorRepo.save(actor);
-        return ResponseEntity.ok(actor);
+    @PutMapping(value = "/updateActor/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Actor handleUpdateActor(int id, Actor actorInfo){
+        return actorService.updateActor(id, actorInfo);
     }
 
     // delete actor from rest API
-    @DeleteMapping(value = "/actors/{id}")
-    public  ResponseEntity<HttpStatus> deleteActor(@PathVariable int id){
-        Actor actor=actorRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Actor with id "+id+" does not exist."));
-        actorRepo.delete(actor);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping(value = "/deleteActor/{id}")
+    public String handleDeleteActor(@PathVariable int id){
+        return actorService.deleteActor(id);
     }
 }

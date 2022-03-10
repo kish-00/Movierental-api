@@ -4,7 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Store;
 import com.movies.app.Controller.Repository.StoreRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,9 +31,8 @@ public class StoreService {
     }
 
     //reads a store by its id
-    public ResponseEntity<Store> getStoreById(int id){
-        Store store=storeRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Store with id "+id+" does not exit."));
-        return ResponseEntity.ok(store);
+    public Store getStoreById(int id){
+        return storeRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Store with id "+id+" does not exit."));
     }
 
     //update Store

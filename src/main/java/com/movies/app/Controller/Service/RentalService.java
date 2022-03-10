@@ -37,7 +37,7 @@ public class RentalService {
     }
 
     //update rental
-    public Rental updateFilms(int id, Rental rentalInfo){
+    public Rental updateRental(int id, Rental rentalInfo){
         Rental rental=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" + id+" does not exist."));
 
         rental.setRentalDate(rentalInfo.getRentalDate());
@@ -47,7 +47,7 @@ public class RentalService {
     }
 
     // delete rental
-    public  String deleteFilms(int id){
+    public  String deleteRental(int id){
         Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" + id+" does not exist."));
         rentalRepo.delete(film);
         return "Rental with id "+id+" has been deleted!";

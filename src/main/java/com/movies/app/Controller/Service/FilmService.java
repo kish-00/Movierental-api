@@ -56,7 +56,7 @@ public class FilmService {
     }
 
     // delete film from rest API
-        public  String deleteFilms(int id){
+        public  String deleteFilm(int id){
         Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id: "+id+" does not exist."));
         filmRepo.delete(film);
         return "Film with id "+id+" has been deleted!";

@@ -1,15 +1,9 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.RentalRepo;
 import com.movies.app.Controller.Model.Rental;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,46 +11,42 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class RentalController {
 
+    private final RentalService rentalService;
+
     @Autowired
-    private RentalRepo rentalRepo;
-
-    // get all rentals
-    @GetMapping(value = "/rental", consumes = "application/JSON", produces = "application/JSON")
-    public List<Rental> getAllLanguage(){
-        return rentalRepo.findAll();
-
+    public RentalController(RentalService rentalService) {
+        this.rentalService = rentalService;
     }
 
-    //create rental
-    @PostMapping(value = "/rental", consumes = "application/JSON", produces = "application/JSON")
-    public Rental createFilm(@RequestBody Rental film){
-        return rentalRepo.save(film);
+    //adds a rental
+    @PostMapping(value = "/addRental", consumes = "application/JSON")
+    public Rental handleAddRental(@RequestBody Rental rental){
+        return rentalService.addRental(rental);
     }
 
-    //get rental by id
+//add multiple rentals
+
+    //gets all rentals
+    @GetMapping(value = "/rentals", produces = "application/JSON")
+    public List<Rental> handleGetAllRentals(){
+        return rentalService.getAllRentals();
+    }
+
+    //gets a rental by its id
     @GetMapping(value = "/rental/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Rental> getFilmById(@PathVariable int id){
-        Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" +id+" does not exist."));
-        return ResponseEntity.ok(film);
+    public Rental handleGetRentalById(@PathVariable int id){
+        return rentalService.getRentalById(id);
     }
 
-    // update rental
-    @PutMapping(value = "/rental/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Rental> updateFilms(@PathVariable int id,@RequestBody Rental filmInfo){
-        Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" + id+" does not exist."));
-
-        film.setRentalDate(filmInfo.getRentalDate());
-        film.setReturnDate(filmInfo.getReturnDate());
-
-        rentalRepo.save(film);
-        return ResponseEntity.ok(film);
+    //update rental Rest API
+    @PutMapping(value = "/updateRental/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Rental handleUpdateRental(int id, Rental rentalInfo){
+        return rentalService.updateRental(id, rentalInfo);
     }
 
-    // delete rental
-    @DeleteMapping(value = "/rental/{id}")
-    public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
-        Rental film=rentalRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Rental with id:" + id+" does not exist."));
-        rentalRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // delete rental from rest API
+    @DeleteMapping(value = "/deleteRental/{id}")
+    public String handleDeleteRental(@PathVariable int id){
+        return rentalService.deleteRental(id);
     }
 }

@@ -1,15 +1,9 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.FilmRepo;
 import com.movies.app.Controller.Model.Film;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,54 +11,42 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class FilmController {
 
+    private final FilmService filmService;
+
     @Autowired
-    private FilmRepo filmRepo;
-
-    // get all films
-    @GetMapping(value = "/films", consumes = "application/JSON", produces = "application/JSON")
-    public List<Film> getAllFilms(){
-        return filmRepo.findAll();
+    public FilmController(FilmService filmService) {
+        this.filmService = filmService;
     }
 
-    //create film
-    @PostMapping("/films")
-    public Film createFilm(@RequestBody Film film){
-        return filmRepo.save(film);
+    //adds a film
+    @PostMapping(value = "/addFilm", consumes = "application/JSON")
+    public Film handleAddFilm(@RequestBody Film film){
+        return filmService.addFilm(film);
     }
 
-    //get film by id
-    @GetMapping(value = "/films/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Film> getFilmById(@PathVariable int id){
-        Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id:"+id+" does not exist."));
-        return ResponseEntity.ok(film);
+//add multiple films
+
+    //gets all films
+    @GetMapping(value = "/films", produces = "application/JSON")
+    public List<Film> handleGetAllFilms(){
+        return filmService.getAllFilms();
     }
 
-    // update film
-    @PutMapping(value = "/films/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Film> updateFilms(@PathVariable int id,@RequestBody Film filmInfo){
-        Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id:"+id+" does not exist."));
+    //gets a film by its id
+    @GetMapping(value = "/film/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Film handleGetFilmById(@PathVariable int id){
+        return filmService.getFilmById(id);
+    }
 
-        film.setTitle(filmInfo.getTitle());
-        film.setDescription(filmInfo.getDescription());
-        film.setReleaseYear(filmInfo.getReleaseYear());
-        film.setRentalDuration(filmInfo.getRentalDuration());
-        film.setRentalRate(filmInfo.getRentalRate());
-        film.setLength(filmInfo.getLength());
-        film.setReplacementCost(filmInfo.getReplacementCost());
-        film.setRating(filmInfo.getRating());
-        film.setLastUpdate(filmInfo.getLastUpdate());
-        film.setSpecialFeatures(filmInfo.getSpecialFeatures());
-        film.setFullTxt(filmInfo.getFullTxt());
-
-        filmRepo.save(film);
-        return ResponseEntity.ok(film);
+    //update film Rest API
+    @PutMapping(value = "/updateFilm/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Film handleUpdateFilm(int id, Film filmInfo){
+        return filmService.updateFilm(id, filmInfo);
     }
 
     // delete film from rest API
-    @DeleteMapping(value = "/films/{id}")
-    public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
-        Film film=filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id: "+id+" does not exist."));
-        filmRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping(value = "/deleteFilm/{id}")
+    public String handleDeleteFilm(@PathVariable int id){
+        return filmService.deleteFilm(id);
     }
 }

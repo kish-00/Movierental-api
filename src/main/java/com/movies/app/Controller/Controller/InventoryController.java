@@ -1,15 +1,9 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.InventoryRepo;
 import com.movies.app.Controller.Model.Inventory;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,44 +11,42 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class InventoryController {
 
+    private final InventoryService inventoryService;
+
     @Autowired
-    private InventoryRepo inventoryRepo;
-
-    // get all inventories
-    @GetMapping(value = "/inventory", produces = "application/JSON")
-    public List<Inventory> getAllInventory(){
-        return inventoryRepo.findAll();
+    public InventoryController(InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
     }
 
-    //create inventory
-    @PostMapping(value = "/inventory", consumes = "application/JSON")
-    public Inventory createFilm(@RequestBody Inventory inventory){
-        return inventoryRepo.save(inventory);
+    //adds an inventory
+    @PostMapping(value = "/addInventory", consumes = "application/JSON")
+    public Inventory handleAddInventory(@RequestBody Inventory inventory){
+        return inventoryService.addInventory(inventory);
     }
 
-    //get inventory by id
-    @GetMapping(value = "/inventory/{id}")
-    public ResponseEntity<Inventory> getFilmById(@PathVariable int id){
-        Inventory inventory=inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory with id:"+id+" does not exist."));
-        return ResponseEntity.ok(inventory);
+//add multiple inventories
+
+    //gets all inventories
+    @GetMapping(value = "/inventories", produces = "application/JSON")
+    public List<Inventory> handleGetAllInventories(){
+        return inventoryService.getAllInventory();
     }
 
-    // update inventory
-    @PutMapping(value = "/inventory/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Inventory> updateFilms(@PathVariable int id,@RequestBody Inventory inventoryInfo){
-        Inventory inventory=inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory not exist with id:" + id));
+    //gets an inventory by its id
+    @GetMapping(value = "/inventory/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Inventory handleGetInventoryById(@PathVariable int id){
+        return inventoryService.getInventoryById(id);
+    }
 
-        inventory.setLastUpdated(inventoryInfo.getLastUpdated());
-
-        inventoryRepo.save(inventory);
-        return ResponseEntity.ok(inventory);
+    //update inventory Rest API
+    @PutMapping(value = "/updateInventory/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Inventory handleUpdateInventory(int id, Inventory inventoryInfo){
+        return inventoryService.updateInventory(id, inventoryInfo);
     }
 
     // delete inventory from rest API
-    @DeleteMapping(value = "/inventory/{id}")
-    public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
-        Inventory film=inventoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Inventory with id:" + id+" does not exist."));
-        inventoryRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping(value = "/deleteInventory/{id}")
+    public String handleDeleteInventory(@PathVariable int id){
+        return inventoryService.deleteInventory(id);
     }
 }

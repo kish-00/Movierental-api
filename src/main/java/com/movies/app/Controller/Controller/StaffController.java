@@ -1,66 +1,52 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.StaffRepo;
 import com.movies.app.Controller.Model.Staff;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/")
 public class StaffController {
+
+    private final StaffService staffService;
+
     @Autowired
-    private StaffRepo staffRepo;
-
-    // get all staff
-    @GetMapping(value = "/staff", consumes = "application/JSON", produces = "application/JSON")
-    public List<Staff> getAllLanguage(){
-        return staffRepo.findAll();
+    public StaffController(StaffService staffService) {
+        this.staffService = staffService;
     }
 
-    //create staff
-    @PostMapping(value = "/staff", consumes = "application/JSON")
-    public Staff createFilm(@RequestBody Staff film){
-        return staffRepo.save(film);
+    //adds a staff
+    @PostMapping(value = "/addStaff", consumes = "application/JSON")
+    public Staff handleAddStaff(@RequestBody Staff staff){
+        return staffService.addStaff(staff);
     }
 
-    //get staff by id
+//add multiple staffs
+
+    //gets all staff
+    @GetMapping(value = "/staff", produces = "application/JSON")
+    public List<Staff> handleGetAllStaffs(){
+        return staffService.getAllStaff();
+    }
+
+    //gets a staff by its id
     @GetMapping(value = "/staff/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Staff> getFilmById(@PathVariable int id){
-        Staff film=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
-        return ResponseEntity.ok(film);
+    public Staff handleGetStaffById(@PathVariable int id){
+        return staffService.getStaffById(id);
     }
 
-    // update staff
-    @PutMapping(value = "/staff/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Staff> updateFilms(@PathVariable int id,@RequestBody Staff filmInfo){
-        Staff film=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
-
-        film.setPaymentId(filmInfo.getPaymentId());
-        film.setFirstName(filmInfo.getFirstName());
-        film.setLastName(filmInfo.getLastName());
-        film.setEmail(filmInfo.getEmail());
-        film.setUsername(filmInfo.getUsername());
-        film.setPassword(filmInfo.getPassword());
-        film.setLastUpdated(filmInfo.getLastUpdated());
-        film.setPictureUrl(filmInfo.getPictureUrl());
-
-        staffRepo.save(film);
-        return ResponseEntity.ok(film);
+    //update staff Rest API
+    @PutMapping(value = "/updateStaff/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Staff handleUpdateStaff(int id, Staff staffInfo){
+        return staffService.updateStaff(id, staffInfo);
     }
 
     // delete staff from rest API
-    @DeleteMapping(value = "/staff/{id}")
-    public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
-        Staff film=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
-        staffRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping(value = "/deleteStaff/{id}")
+    public String handleDeleteStaff(@PathVariable int id){
+        return staffService.deleteStaff(id);
     }
 }

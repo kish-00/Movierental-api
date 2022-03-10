@@ -1,15 +1,9 @@
 package com.movies.app.Controller.Controller;
 
-//import java.net.URI;
-
-import com.movies.app.Controller.Repository.StoreRepo;
 import com.movies.app.Controller.Model.Store;
-import com.movies.app.Controller.Exception.ResourceNotFoundException;
+import com.movies.app.Controller.Service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,44 +11,42 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class StoreController {
 
+    private final StoreService storeService;
+
     @Autowired
-    private StoreRepo storeRepo;
-
-    // get all store
-    @GetMapping(value = "/stores", consumes = "application/JSON", produces = "application/JSON")
-    public List<Store> getAllFilms(){
-        return storeRepo.findAll();
+    public StoreController(StoreService storeService) {
+        this.storeService = storeService;
     }
 
-    //create store Rest API
-    @PostMapping(value = "/stores", consumes = "application/JSON")
-    public Store createFilm(@RequestBody Store film){
-        return storeRepo.save(film);
+    //adds a store
+    @PostMapping(value = "/addStore", consumes = "application/JSON")
+    public Store handleAddStore(@RequestBody Store store){
+        return storeService.addStore(store);
     }
 
-    //get store by id
-    @GetMapping(value = "/stores/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Store> getFilmById(@PathVariable int id){
-        Store film=storeRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Store with id:" + id+" does not exist."));
-        return ResponseEntity.ok(film);
+//add multiple stores
+
+    //gets all stores
+    @GetMapping(value = "/stores", produces = "application/JSON")
+    public List<Store> handleGetAllStores(){
+        return storeService.getAllStore();
     }
 
-    // update store
-    @PutMapping(value = "/stores/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public ResponseEntity<Store> updateFilms(@PathVariable int id,@RequestBody Store filmInfo){
-        Store film=storeRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Store with id:" + id+" does not exist."));
-
-        film.setLastUpdated(filmInfo.getLastUpdated());
-
-        storeRepo.save(film);
-        return ResponseEntity.ok(film);
+    //gets a store by its id
+    @GetMapping(value = "/store/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Store handleGetStoreById(@PathVariable int id){
+        return storeService.getStoreById(id);
     }
 
-    // delete store
-    @DeleteMapping(value = "/stores/{id}")
-    public  ResponseEntity<HttpStatus> deleteFilms(@PathVariable int id){
-        Store film=storeRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id:" + id+" does not exist."));
-        storeRepo.delete(film);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    //update store Rest API
+    @PutMapping(value = "/updateStore/{id}", consumes = "application/JSON", produces = "application/JSON")
+    public Store handleUpdateStore(int id, Store storeInfo){
+        return storeService.updateStore(id, storeInfo);
+    }
+
+    // delete store from rest API
+    @DeleteMapping(value = "/deleteStore/{id}")
+    public String handleDeleteStore(@PathVariable int id){
+        return storeService.deleteStore(id);
     }
 }
