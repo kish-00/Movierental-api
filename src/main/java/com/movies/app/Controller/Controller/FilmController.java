@@ -24,8 +24,6 @@ public class FilmController {
         return filmService.addFilm(film);
     }
 
-//add multiple films
-
     //gets all films
     @GetMapping(value = "/films", produces = "application/JSON")
     public List<Film> handleGetAllFilms(){
@@ -36,6 +34,12 @@ public class FilmController {
     @GetMapping(value = "/film/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Film handleGetFilmById(@PathVariable int id){
         return filmService.getFilmById(id);
+    }
+
+    //gets film by its title
+    @GetMapping(value = "/film/{title}", produces = "application/json")
+    public Film handleGetFilmTitle(@PathVariable String title){
+        return filmService.getFilmByTitle(title);
     }
 
     //update film Rest API

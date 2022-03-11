@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Rental;
 import com.movies.app.Controller.Repository.RentalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

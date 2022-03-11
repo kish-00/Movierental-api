@@ -20,7 +20,6 @@ public class Inventory {
     @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;
 
-
     @ManyToOne
     private Film filmInventory;
 

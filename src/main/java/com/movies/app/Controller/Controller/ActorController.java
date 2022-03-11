@@ -24,8 +24,6 @@ public class ActorController {
         return actorService.addActor(actor);
     }
 
-//add multiple actors
-
     //gets all actors
     @GetMapping(value = "/actors", produces = "application/JSON")
     public List<Actor> handleGetAllActors(){
@@ -36,6 +34,18 @@ public class ActorController {
     @GetMapping(value = "/actor/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Actor handleGetActorById(@PathVariable int id){
         return actorService.getActorById(id);
+    }
+
+    //get actor by first name
+    @GetMapping(value = "/actor/{firstName}", produces = "application/json")
+    public Actor handleGetActorByFirstName(@PathVariable String firstName){
+        return actorService.getActorByFirstName(firstName);
+    }
+
+    //get actor by last name
+    @GetMapping(value = "/actor/{lastName}", produces = "application/json")
+    public Actor handleGetActorByLastName(@PathVariable String lastname){
+        return actorService.getActorByLastName(lastname);
     }
 
     //update actor Rest API

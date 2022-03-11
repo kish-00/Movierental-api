@@ -34,6 +34,16 @@ public class StaffService {
         return staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id "+id+" does not exit."));
     }
 
+    //reads a staff by their first name
+    public Staff getStaffByFirstName(String firstName) {
+        return staffRepo.findByFirstName(firstName);
+    }
+
+    //reads a staff by the last name
+    public Staff getStaffByLastName(String lastName) {
+        return staffRepo.findByLastName(lastName);
+    }
+
     //update staff
     public Staff updateStaff(int id, Staff staffInfo){
         Staff staff=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));

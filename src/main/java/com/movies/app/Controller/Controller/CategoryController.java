@@ -24,8 +24,6 @@ public class CategoryController {
         return categoryService.addCategory(category);
     }
 
-//add multiple categories
-
     //gets all categories
     @GetMapping(value = "/categories", produces = "application/JSON")
     public List<Category> handleGetAllCategories(){
@@ -36,6 +34,12 @@ public class CategoryController {
     @GetMapping(value = "/category/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Category handleGetCategoryById(@PathVariable int id){
         return categoryService.getCategoryById(id);
+    }
+
+    //get category by name of category
+    @GetMapping(value = "/category/{name}")
+    public Category handleGetCategoryByName(@PathVariable String name){
+        return categoryService.getCategoryByName(name);
     }
 
     //update category Rest API

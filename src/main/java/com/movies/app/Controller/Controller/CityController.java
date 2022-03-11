@@ -24,8 +24,6 @@ public class CityController {
         return cityService.addCity(city);
     }
 
-//add multiple cities
-
     //gets all cities
     @GetMapping(value = "/cities", produces = "application/JSON")
     public List<City> handleGetAllCities(){
@@ -36,6 +34,12 @@ public class CityController {
     @GetMapping(value = "/city/{id}", consumes = "application/JSON", produces = "application/JSON")
     public City handleGetCityById(@PathVariable int id){
         return cityService.getCityById(id);
+    }
+
+    //gets city by name
+    @GetMapping(value = "/city/{name}", produces = "application/json")
+    public City handleGetCityByName (@PathVariable String name){
+        return cityService.getCityByName(name);
     }
 
     //update city Rest API

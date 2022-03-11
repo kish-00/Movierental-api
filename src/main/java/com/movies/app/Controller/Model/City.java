@@ -17,10 +17,10 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cityId")
-    private int d;
+    private int Id;
 
-    @Column(name = "city", nullable = false)
-    private String city;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;

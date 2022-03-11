@@ -33,12 +33,17 @@ public class CountryService {
     public Country getCountryById(int id){
         return countryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Country with id "+id+" does not exit."));
     }
+    //reads country by its name
+    public Country getCountryByName(String name){
+        return countryRepo.findByName(name);
+    }
+
 
     //update country
     public Country updateCountry(int id, Country countryInfo){
         Country country= countryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Country with id:" +id+" does not exist."));
 
-        country.setCountry(countryInfo.getCountry());
+        country.setName(countryInfo.getName());
         country.setLastUpdate(countryInfo.getLastUpdate());
         country.setCities(countryInfo.getCities());
 

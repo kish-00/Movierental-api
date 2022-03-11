@@ -24,8 +24,6 @@ public class StoreController {
         return storeService.addStore(store);
     }
 
-//add multiple stores
-
     //gets all stores
     @GetMapping(value = "/stores", produces = "application/JSON")
     public List<Store> handleGetAllStores(){

@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Film;
 import com.movies.app.Controller.Repository.FilmRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +32,11 @@ public class FilmService {
     //reads a film by its id
     public Film getFilmById(int id){
         return filmRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Film with id "+id+" does not exit."));
+    }
+
+    //reads film by its title
+    public Film getFilmByTitle(String title){
+        return filmRepo.findFilmByTitle(title);
     }
 
     //update film

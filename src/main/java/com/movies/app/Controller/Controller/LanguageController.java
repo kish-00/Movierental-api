@@ -38,6 +38,11 @@ public class LanguageController {
         return languageService.getLanguageById(id);
     }
 
+    //get language by name of language
+    @GetMapping(value = "/language/{name}", produces = "application/json")
+    public Language handleGetLanguageByName(String name){
+        return languageService.getLanguageByName(name);
+    }
     //update language Rest API
     @PutMapping(value = "/updateLanguage/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Language handleUpdateLanguage(int id, Language languageInfo){

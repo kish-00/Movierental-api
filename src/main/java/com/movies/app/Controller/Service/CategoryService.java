@@ -23,7 +23,6 @@ public class CategoryService {
         return categoryRepo.save(category);
     }
 
-    //create a list of categories
 
     //read a list of all the categories
     public List<Category> getAllCategories(){
@@ -33,6 +32,11 @@ public class CategoryService {
     //reads a category by its id
     public Category getCategoryById(int id){
         return categoryRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Category with id "+id+" does not exit."));
+    }
+
+    //reads a category by its name
+    public Category getCategoryByName(String name){
+        return categoryRepo.findByName(name);
     }
 
     //update category Rest API

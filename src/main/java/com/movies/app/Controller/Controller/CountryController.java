@@ -24,8 +24,6 @@ public class CountryController {
         return countryService.addCountry(country);
     }
 
-//add multiple countries
-
     //gets all countries
     @GetMapping(value = "/countries", produces = "application/JSON")
     public List<Country> handleGetAllCountries(){
@@ -38,6 +36,11 @@ public class CountryController {
         return countryService.getCountryById(id);
     }
 
+    //get country by name
+    @GetMapping(value = "/country/{name}", produces = "application/json")
+    public Country handleGetCountryByName(@PathVariable String name){
+        return countryService.getCountryByName(name);
+    }
     //update country
     @PutMapping(value = "/updateCountry/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Country handleUpdateCountry(int id, Country countryInfo){

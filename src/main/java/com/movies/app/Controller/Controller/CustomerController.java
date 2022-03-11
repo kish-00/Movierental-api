@@ -24,8 +24,6 @@ public class CustomerController {
         return customerService.addCustomer(customer);
     }
 
-//add multiple customers
-
     //gets all customers
     @GetMapping(value = "/customers", produces = "application/JSON")
     public List<Customer> handleGetAllCustomers(){
@@ -36,6 +34,18 @@ public class CustomerController {
     @GetMapping(value = "/customer/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Customer handleGetCustomerById(@PathVariable int id){
         return customerService.getCustomerById(id);
+    }
+
+    //get customer by first name
+    @GetMapping(value = "/customer/{firstName}", produces = "application/json")
+    public Customer handleGetCustomerByFirstName(@PathVariable String firstName){
+        return customerService.getCustomerByFirstName(firstName);
+    }
+
+    //get customer by last name
+    @GetMapping(value = "/customer/{lastName}", produces = "application/json")
+    public Customer handleGetCustomerByLastName(@PathVariable String lastname){
+        return customerService.getCustomerByLastName(lastname);
     }
 
     //update customer Rest API

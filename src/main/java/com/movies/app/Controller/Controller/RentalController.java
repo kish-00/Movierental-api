@@ -24,8 +24,6 @@ public class RentalController {
         return rentalService.addRental(rental);
     }
 
-//add multiple rentals
-
     //gets all rentals
     @GetMapping(value = "/rentals", produces = "application/JSON")
     public List<Rental> handleGetAllRentals(){

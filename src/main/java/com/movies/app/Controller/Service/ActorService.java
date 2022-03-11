@@ -22,8 +22,6 @@ public class ActorService {
         return actorRepo.save(actor);
     }
 
-    //create a list of actors
-
     //read a list of all the actors
     public List<Actor> getAllActors(){
         return actorRepo.findAll();
@@ -32,6 +30,16 @@ public class ActorService {
     //reads an actor by its id
     public Actor getActorById(int id){
         return actorRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Actor with id "+id+" does not exit."));
+    }
+
+    //reads an actor by their first name
+    public Actor getActorByFirstName(String firstName) {
+        return actorRepo.findByFirstName(firstName);
+    }
+
+    //reads an actor by the last name
+    public Actor getActorByLastName(String lastName) {
+        return actorRepo.findByLastName(lastName);
     }
 
     //update actor
@@ -50,5 +58,3 @@ public class ActorService {
         return "Actor"+id+"has been deleted!";
     }
 }
-
-//response entity?

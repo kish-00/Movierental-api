@@ -19,8 +19,8 @@ public class Country {
     @Column(name = "countryId")
     private int countryId;
 
-    @Column(name = "country", nullable = false)
-    private String country;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;

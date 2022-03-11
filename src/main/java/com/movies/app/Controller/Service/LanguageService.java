@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Language;
 import com.movies.app.Controller.Repository.LanguageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +17,7 @@ public class LanguageService {
         this.languageRepo = languageRepo;
     }
 
-    //creates an language
+    //creates a language
     public Language addLanguage(Language language){
         return languageRepo.save(language);
     }
@@ -34,6 +32,11 @@ public class LanguageService {
     //reads a language by its id
     public Language getLanguageById(int id){
         return languageRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Language with id "+id+" does not exit."));
+    }
+
+    //reads language by its name
+    public Language getLanguageByName(String name){
+        return languageRepo.findByName(name);
     }
 
     //update language

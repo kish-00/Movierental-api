@@ -24,8 +24,6 @@ public class StaffController {
         return staffService.addStaff(staff);
     }
 
-//add multiple staffs
-
     //gets all staff
     @GetMapping(value = "/staff", produces = "application/JSON")
     public List<Staff> handleGetAllStaffs(){
@@ -36,6 +34,18 @@ public class StaffController {
     @GetMapping(value = "/staff/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Staff handleGetStaffById(@PathVariable int id){
         return staffService.getStaffById(id);
+    }
+
+    //get staff by first name
+    @GetMapping(value = "/staff/{firstName}", produces = "application/json")
+    public Staff handleGetStaffByFirstName(@PathVariable String firstName){
+        return staffService.getStaffByFirstName(firstName);
+    }
+
+    //get staff by last name
+    @GetMapping(value = "/staff/{lastName}", produces = "application/json")
+    public Staff handleGetStaffByLastName(@PathVariable String lastname){
+        return staffService.getStaffByLastName(lastname);
     }
 
     //update staff Rest API

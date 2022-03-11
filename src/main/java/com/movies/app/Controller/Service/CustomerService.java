@@ -34,6 +34,16 @@ public class CustomerService {
         return customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer with id "+id+" does not exit."));
     }
 
+    //reads an actor by their first name
+    public Customer getCustomerByFirstName(String firstName) {
+        return customerRepo.findByFirstName(firstName);
+    }
+
+    //reads an actor by the last name
+    public Customer getCustomerByLastName(String lastName) {
+        return customerRepo.findByLastName(lastName);
+    }
+
     //update customer
     public Customer updateCustomer(int id, Customer customerInfo){
         Customer customer=customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer with id:"+id+" does not exist."));

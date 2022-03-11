@@ -23,8 +23,6 @@ public class StoreService {
         return storeRepo.save(store);
     }
 
-    //create a list of store
-
     //read a list of all the stores
     public List<Store> getAllStore(){
         return storeRepo.findAll();

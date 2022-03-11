@@ -36,6 +36,12 @@ public class AddressController {
         return addressService.getAddressById(id);
     }
 
+    //get address by address
+    @GetMapping(value = "/getAddress/{address}", produces = "application/json")
+    public Address handleGetAddressByAddress(@PathVariable String address){
+        return addressService.getAddressByAddress(address);
+    }
+
     // update address
     @PutMapping(value = "/updateAddress/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Address handleUpdateAddress(@PathVariable int id,@RequestBody Address addressInfo){

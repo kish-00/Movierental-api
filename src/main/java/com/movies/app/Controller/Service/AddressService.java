@@ -4,8 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Address;
 import com.movies.app.Controller.Repository.AddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +22,6 @@ public class AddressService {
         return addressRepo.save(address);
     }
 
-    //create a list of addresses
-
     //read a list of all the addresses
     public List<Address> getAllAddresses(){
         return addressRepo.findAll();
@@ -34,6 +30,11 @@ public class AddressService {
     //reads an address by its id
     public Address getAddressById(int id){
         return addressRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Address with id "+id+" does not exit."));
+    }
+
+    //reads an address by its address
+    public Address getAddressByAddress(String address){
+        return (Address) addressRepo.findByAddress(address);
     }
 
     //update address Rest API
