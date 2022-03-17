@@ -37,15 +37,15 @@ public class ActorController {
     }
 
     //get actor by first name
-    @GetMapping(value = "/actor/{firstName}", produces = "application/json")
-    public Actor handleGetActorByFirstName(@PathVariable String firstName){
+    @GetMapping(value = "/actors/{firstName}", produces = "application/json")
+    public Actor handleGetActorByFirstName(@RequestParam(value = "firstName") String firstName){
         return actorService.getActorByFirstName(firstName);
     }
 
     //get actor by last name
     @GetMapping(value = "/actor/{lastName}", produces = "application/json")
-    public Actor handleGetActorByLastName(@PathVariable String lastname){
-        return actorService.getActorByLastName(lastname);
+    public Actor handleGetActorByLastName(@RequestParam(value = "lastName") String lastName){
+        return actorService.getActorByLastName(lastName);
     }
 
     //update actor Rest API
