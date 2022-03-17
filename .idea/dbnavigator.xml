@@ -38,6 +38,7 @@
     <connection id="114234fb-fd66-4bf8-a18c-f4fff31b21a1" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="114234fb-fd66-4bf8-a18c-f4fff31b21a1" dataset="movierental.staff" active-filter-id="" />
     <filter-actions connection-id="114234fb-fd66-4bf8-a18c-f4fff31b21a1" dataset="movierental.film_actor" active-filter-id="f399e80e-8e9a-4ccb-93a5-0b42e3aff0db">
       <filter id="f399e80e-8e9a-4ccb-93a5-0b42e3aff0db" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="film_Id" operator="=" value="" active="true" />
