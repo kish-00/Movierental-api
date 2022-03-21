@@ -19,31 +19,31 @@ public class RentalController {
     }
 
     //adds a rental
-    @PostMapping(value = "/addRental", consumes = "application/JSON")
+    @PostMapping("/addRental")
     public Rental handleAddRental(@RequestBody Rental rental){
         return rentalService.addRental(rental);
     }
 
     //gets all rentals
-    @GetMapping(value = "/rentals", produces = "application/JSON")
+    @GetMapping("/rentals")
     public List<Rental> handleGetAllRentals(){
         return rentalService.getAllRentals();
     }
 
     //gets a rental by its id
-    @GetMapping(value = "/rental/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/rental/{id}")
     public Rental handleGetRentalById(@PathVariable int id){
         return rentalService.getRentalById(id);
     }
 
     //update rental Rest API
-    @PutMapping(value = "/updateRental/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateRental/{id}")
     public Rental handleUpdateRental(int id, Rental rentalInfo){
         return rentalService.updateRental(id, rentalInfo);
     }
 
     // delete rental from rest API
-    @DeleteMapping(value = "/deleteRental/{id}")
+    @DeleteMapping("/deleteRental/{id}")
     public String handleDeleteRental(@PathVariable int id){
         return rentalService.deleteRental(id);
     }

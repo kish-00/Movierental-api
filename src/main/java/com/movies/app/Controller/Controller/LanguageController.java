@@ -19,7 +19,7 @@ public class LanguageController {
     }
 
     //adds a language
-    @PostMapping(value = "/addLanguage", consumes = "application/JSON")
+    @PostMapping("/addLanguage")
     public Language handleAddLanguage(@RequestBody Language language){
         return languageService.addLanguage(language);
     }
@@ -27,30 +27,30 @@ public class LanguageController {
 //add multiple languages
 
     //gets all languages
-    @GetMapping(value = "/languages", produces = "application/JSON")
+    @GetMapping("/languages")
     public List<Language> handleGetAllLanguages(){
         return languageService.getAllLanguage();
     }
 
     //gets a language by its id
-    @GetMapping(value = "/language/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/language/{id}")
     public Language handleGetLanguageById(@PathVariable int id){
         return languageService.getLanguageById(id);
     }
 
     //get language by name of language
-    @GetMapping(value = "/language/{name}", produces = "application/json")
+    @GetMapping("/language/{name}")
     public Language handleGetLanguageByName(String name){
         return languageService.getLanguageByName(name);
     }
     //update language Rest API
-    @PutMapping(value = "/updateLanguage/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateLanguage/{id}")
     public Language handleUpdateLanguage(int id, Language languageInfo){
         return languageService.updateLanguage(id, languageInfo);
     }
 
     // delete language from rest API
-    @DeleteMapping(value = "/deleteLanguage/{id}")
+    @DeleteMapping("/deleteLanguage/{id}")
     public String handleDeleteLanguage(@PathVariable int id){
         return languageService.deleteLanguage(id);
     }

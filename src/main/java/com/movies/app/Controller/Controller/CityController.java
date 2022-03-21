@@ -19,37 +19,37 @@ public class CityController {
     }
 
     //adds a city
-    @PostMapping(value = "/addCity", consumes = "application/JSON")
+    @PostMapping("/addCity")
     public City handleAddCity(@RequestBody City city){
         return cityService.addCity(city);
     }
 
     //gets all cities
-    @GetMapping(value = "/cities", produces = "application/JSON")
+    @GetMapping("/cities")
     public List<City> handleGetAllCities(){
         return cityService.getAllCities();
     }
 
     //gets a city by its id
-    @GetMapping(value = "/city/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/city/{id}")
     public City handleGetCityById(@PathVariable int id){
         return cityService.getCityById(id);
     }
 
     //gets city by name
-    @GetMapping(value = "/city/{name}", produces = "application/json")
+    @GetMapping("/city/{name}")
     public City handleGetCityByName (@PathVariable String name){
         return cityService.getCityByName(name);
     }
 
     //update city Rest API
-    @PutMapping(value = "/updateCity/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateCity/{id}")
     public City handleUpdateCity(int id, City cityInfo){
         return cityService.updateCity(id, cityInfo);
     }
 
     // delete city from rest API
-    @DeleteMapping(value = "/deleteCity/{id}")
+    @DeleteMapping("/deleteCity/{id}")
     public String handleDeleteCity(@PathVariable int id){
         return cityService.deleteCity(id);
     }

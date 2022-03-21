@@ -19,43 +19,43 @@ public class CustomerController {
     }
 
     //adds a customer
-    @PostMapping(value = "/addCustomer", consumes = "application/JSON")
+    @PostMapping("/addCustomer")
     public Customer handleAddCustomer(@RequestBody Customer customer){
         return customerService.addCustomer(customer);
     }
 
     //gets all customers
-    @GetMapping(value = "/customers", produces = "application/JSON")
+    @GetMapping("/customers")
     public List<Customer> handleGetAllCustomers(){
         return customerService.getAllCustomers();
     }
 
     //gets a customer by its id
-    @GetMapping(value = "/customer/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/customer/{id}")
     public Customer handleGetCustomerById(@PathVariable int id){
         return customerService.getCustomerById(id);
     }
 
     //get customer by first name
-    @GetMapping(value = "/customer/{firstName}", produces = "application/json")
+    @GetMapping("/customer/{firstName}")
     public Customer handleGetCustomerByFirstName(@PathVariable String firstName){
         return customerService.getCustomerByFirstName(firstName);
     }
 
     //get customer by last name
-    @GetMapping(value = "/customer/{lastName}", produces = "application/json")
+    @GetMapping("/customer/{lastName}")
     public Customer handleGetCustomerByLastName(@PathVariable String lastname){
         return customerService.getCustomerByLastName(lastname);
     }
 
     //update customer Rest API
-    @PutMapping(value = "/updateCustomer/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateCustomer/{id}")
     public Customer handleUpdateCustomer(int id, Customer customerInfo){
         return customerService.updateCustomer(id, customerInfo);
     }
 
     // delete customer from rest API
-    @DeleteMapping(value = "/deleteCustomer/{id}")
+    @DeleteMapping("/deleteCustomer/{id}")
     public String handleDeleteCustomer(@PathVariable int id){
         return customerService.deleteCustomer(id);
     }

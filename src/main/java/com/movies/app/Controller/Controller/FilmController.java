@@ -19,37 +19,37 @@ public class FilmController {
     }
 
     //adds a film
-    @PostMapping(value = "/addFilm", consumes = "application/JSON")
+    @PostMapping("/addFilm")
     public Film handleAddFilm(@RequestBody Film film){
         return filmService.addFilm(film);
     }
 
     //gets all films
-    @GetMapping(value = "/films", produces = "application/JSON")
+    @GetMapping("/films")
     public List<Film> handleGetAllFilms(){
         return filmService.getAllFilms();
     }
 
     //gets a film by its id
-    @GetMapping(value = "/film/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/film/{id}")
     public Film handleGetFilmById(@PathVariable int id){
         return filmService.getFilmById(id);
     }
 
     //gets film by its title
-    @GetMapping(value = "/film/{title}", produces = "application/json")
+    @GetMapping("/film/{title}")
     public Film handleGetFilmTitle(@PathVariable String title){
         return filmService.getFilmByTitle(title);
     }
 
     //update film Rest API
-    @PutMapping(value = "/updateFilm/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateFilm/{id}")
     public Film handleUpdateFilm(int id, Film filmInfo){
         return filmService.updateFilm(id, filmInfo);
     }
 
     // delete film from rest API
-    @DeleteMapping(value = "/deleteFilm/{id}")
+    @DeleteMapping("/deleteFilm/{id}")
     public String handleDeleteFilm(@PathVariable int id){
         return filmService.deleteFilm(id);
     }

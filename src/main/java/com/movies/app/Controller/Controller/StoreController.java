@@ -19,31 +19,31 @@ public class StoreController {
     }
 
     //adds a store
-    @PostMapping(value = "/addStore", consumes = "application/JSON")
+    @PostMapping("/addStore")
     public Store handleAddStore(@RequestBody Store store){
         return storeService.addStore(store);
     }
 
     //gets all stores
-    @GetMapping(value = "/stores", produces = "application/JSON")
+    @GetMapping("/stores")
     public List<Store> handleGetAllStores(){
         return storeService.getAllStore();
     }
 
     //gets a store by its id
-    @GetMapping(value = "/store/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/store/{id}")
     public Store handleGetStoreById(@PathVariable int id){
         return storeService.getStoreById(id);
     }
 
     //update store Rest API
-    @PutMapping(value = "/updateStore/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateStore/{id}")
     public Store handleUpdateStore(int id, Store storeInfo){
         return storeService.updateStore(id, storeInfo);
     }
 
     // delete store from rest API
-    @DeleteMapping(value = "/deleteStore/{id}")
+    @DeleteMapping("/deleteStore/{id}")
     public String handleDeleteStore(@PathVariable int id){
         return storeService.deleteStore(id);
     }

@@ -38,8 +38,8 @@ public class StaffController {
 
     //gets staff by username
     @GetMapping(value = "staff/{userName}")
-    public Staff handleGetStaffByUserName(@PathVariable String userName){
-        return staffService.getStaffByUserName(userName);
+    public Staff handleGetStaffByUsername(@PathVariable String username){
+        return staffService.getStaffByUsername(username);
     }
 
     //get staff by first name

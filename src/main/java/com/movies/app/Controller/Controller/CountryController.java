@@ -19,36 +19,36 @@ public class CountryController {
     }
 
     //adds a country
-    @PostMapping(value = "/addCountry", consumes = "application/JSON")
+    @PostMapping("/addCountry")
     public Country handleAddCountry(@RequestBody Country country){
         return countryService.addCountry(country);
     }
 
     //gets all countries
-    @GetMapping(value = "/countries", produces = "application/JSON")
+    @GetMapping("/countries")
     public List<Country> handleGetAllCountries(){
         return countryService.getAllCountries();
     }
 
     //gets a country by its id
-    @GetMapping(value = "/country/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/country/{id}")
     public Country handleGetCountryById(@PathVariable int id){
         return countryService.getCountryById(id);
     }
 
     //get country by name
-    @GetMapping(value = "/country/{name}", produces = "application/json")
+    @GetMapping("/country/{name}")
     public Country handleGetCountryByName(@PathVariable String name){
         return countryService.getCountryByName(name);
     }
     //update country
-    @PutMapping(value = "/updateCountry/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateCountry/{id}")
     public Country handleUpdateCountry(int id, Country countryInfo){
         return countryService.updateCountry(id, countryInfo);
     }
 
     // delete country
-    @DeleteMapping(value = "/deleteCountry/{id}")
+    @DeleteMapping("/deleteCountry/{id}")
     public String handleDeleteCountry(@PathVariable int id){
         return countryService.deleteCountry(id);
     }

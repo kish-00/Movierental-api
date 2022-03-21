@@ -35,8 +35,8 @@ public class StaffService {
     }
 
     //reads a staff by userName
-    public Staff getStaffByUserName(String userName){
-        return staffRepo.findByUserName(userName);
+    public Staff getStaffByUsername(String username){
+        return staffRepo.findByUsername(username);
     }
 
     //reads a staff by their first name

@@ -19,7 +19,7 @@ public class InventoryController {
     }
 
     //adds an inventory
-    @PostMapping(value = "/addInventory", consumes = "application/JSON")
+    @PostMapping("/addInventory")
     public Inventory handleAddInventory(@RequestBody Inventory inventory){
         return inventoryService.addInventory(inventory);
     }
@@ -27,25 +27,25 @@ public class InventoryController {
 //add multiple inventories
 
     //gets all inventories
-    @GetMapping(value = "/inventories", produces = "application/JSON")
+    @GetMapping("/inventories")
     public List<Inventory> handleGetAllInventories(){
         return inventoryService.getAllInventory();
     }
 
     //gets an inventory by its id
-    @GetMapping(value = "/inventory/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/inventory/{id}")
     public Inventory handleGetInventoryById(@PathVariable int id){
         return inventoryService.getInventoryById(id);
     }
 
     //update inventory Rest API
-    @PutMapping(value = "/updateInventory/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @PutMapping("/updateInventory/{id}")
     public Inventory handleUpdateInventory(int id, Inventory inventoryInfo){
         return inventoryService.updateInventory(id, inventoryInfo);
     }
 
     // delete inventory from rest API
-    @DeleteMapping(value = "/deleteInventory/{id}")
+    @DeleteMapping("/deleteInventory/{id}")
     public String handleDeleteInventory(@PathVariable int id){
         return inventoryService.deleteInventory(id);
     }

@@ -19,37 +19,37 @@ public class CategoryController {
     }
 
     //adds a category
-    @PostMapping(value = "/addCategory", consumes = "application/JSON")
+    @PostMapping("/addCategory")
     public Category handleAddCategory(@RequestBody Category category){
         return categoryService.addCategory(category);
     }
 
     //gets all categories
-    @GetMapping(value = "/categories", produces = "application/JSON")
+    @GetMapping("/categories")
     public List<Category> handleGetAllCategories(){
         return categoryService.getAllCategories();
     }
 
     //gets a category by its id
-    @GetMapping(value = "/category/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping("/category/{id}")
     public Category handleGetCategoryById(@PathVariable int id){
         return categoryService.getCategoryById(id);
     }
 
     //get category by name of category
-    @GetMapping(value = "/category/{name}")
+    @GetMapping("/category/{name}")
     public Category handleGetCategoryByName(@PathVariable String name){
         return categoryService.getCategoryByName(name);
     }
 
     //update category Rest API
-    @PutMapping(value = "/updateCategory/{id}")
+    @PutMapping("/updateCategory/{id}")
     public Category handleUpdateCategory(int id, Category categoryInfo){
         return categoryService.updateCategory(id, categoryInfo);
     }
 
     // delete category from rest API
-    @DeleteMapping(value = "/deleteCategory/{id}")
+    @DeleteMapping("/deleteCategory/{id}")
     public String handleDeleteCategory(@PathVariable int id){
         return categoryService.deleteCategory(id);
     }

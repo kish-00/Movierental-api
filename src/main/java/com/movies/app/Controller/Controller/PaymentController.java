@@ -19,7 +19,7 @@ public class PaymentController {
     }
 
     //adds a payment
-    @PostMapping(value = "/addPayment", consumes = "application/JSON")
+    @PostMapping("/addPayment")
     public Payment handleAddPayment(@RequestBody Payment payment){
         return paymentService.addPayment(payment);
     }
@@ -27,7 +27,7 @@ public class PaymentController {
 //add multiple payments
 
     //gets all payments
-    @GetMapping(value = "/payments", produces = "application/JSON")
+    @GetMapping("/payments")
     public List<Payment> handleGetAllPayments(){
         return paymentService.getAllPayments();
     }
