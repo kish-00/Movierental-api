@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface StaffRepo extends JpaRepository<Staff,Integer> {
     Staff findByFirstName(String firstName);
     Staff findByLastName(String lastName);
+    Staff findByUserName(String userName);
 }

@@ -4,6 +4,7 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Staff;
 import com.movies.app.Controller.Repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +33,11 @@ public class StaffService {
     //reads a staff by its id
     public Staff getStaffById(int id){
         return staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id "+id+" does not exit."));
+    }
+
+    //reads a staff by userName
+    public Staff getStaffByUserName(String userName){
+        return staffRepo.findByUserName(userName);
     }
 
     //reads a staff by their first name
@@ -65,5 +71,16 @@ public class StaffService {
         Staff film=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
         staffRepo.delete(film);
         return "Staff id "+id+" has been deleted!";
+    }
+
+    // authenticate staff
+    public Staff authenticateStaff(String userName, String password) throws UsernameNotFoundException {
+        try{
+            if (staffRepo.findByUserName(userName)==null){
+                new ResourceNotFoundException("Staff with username"+userName+" does nit exist!");
+            }else{
+
+            }
+        }
     }
 }

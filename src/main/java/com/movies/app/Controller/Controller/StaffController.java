@@ -59,4 +59,10 @@ public class StaffController {
     public String handleDeleteStaff(@PathVariable int id){
         return staffService.deleteStaff(id);
     }
+
+    //staff login
+    @PostMapping(value = "/staffLogin")
+    public Staff login(@RequestParam("userName") String userName, @RequestParam("password") String password){
+        return staffService.authenticateStaff(userName, password);
+    }
 }
