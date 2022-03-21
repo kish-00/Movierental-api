@@ -36,6 +36,12 @@ public class StaffController {
         return staffService.getStaffById(id);
     }
 
+    //gets staff by username
+    @GetMapping(value = "staff/{userName}")
+    public Staff handleGetStaffByUserName(@PathVariable String userName){
+        return staffService.getStaffByUserName(userName);
+    }
+
     //get staff by first name
     @GetMapping(value = "/staff/{firstName}", produces = "application/json")
     public Staff handleGetStaffByFirstName(@PathVariable String firstName){
@@ -60,9 +66,4 @@ public class StaffController {
         return staffService.deleteStaff(id);
     }
 
-    //staff login
-    @PostMapping(value = "/staffLogin")
-    public Staff login(@RequestParam("userName") String userName, @RequestParam("password") String password){
-        return staffService.authenticateStaff(userName, password);
-    }
 }

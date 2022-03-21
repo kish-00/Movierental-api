@@ -44,8 +44,6 @@ public class Staff implements rentalInterface,paymentInterface {
     @Column(name = "pictureUrl", nullable = false)
     private String pictureUrl;
 
-    private static long token;
-
     @OneToMany(mappedBy = "staff")
     private List<Rental> rentals;
 

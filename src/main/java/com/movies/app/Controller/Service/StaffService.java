@@ -4,7 +4,6 @@ import com.movies.app.Controller.Exception.ResourceNotFoundException;
 import com.movies.app.Controller.Model.Staff;
 import com.movies.app.Controller.Repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,16 +70,5 @@ public class StaffService {
         Staff film=staffRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Staff with id:" + id+" does not exist."));
         staffRepo.delete(film);
         return "Staff id "+id+" has been deleted!";
-    }
-
-    // authenticate staff
-    public Staff authenticateStaff(String userName, String password) throws UsernameNotFoundException {
-        try{
-            if (staffRepo.findByUserName(userName)==null){
-                new ResourceNotFoundException("Staff with username"+userName+" does nit exist!");
-            }else{
-
-            }
-        }
     }
 }
