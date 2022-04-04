@@ -3,6 +3,7 @@ package com.movies.app.Controller.Controller;
 import com.movies.app.Controller.Model.Actor;
 import com.movies.app.Controller.Service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +27,12 @@ public class ActorController {
 
     //gets all actors
     @GetMapping("/actors")
-    public List<Actor> handleGetAllActors(){
-        return actorService.getAllActors();
+    public ResponseEntity<List<Actor>> handleGetAllActors(){
+        return ResponseEntity.ok().body(actorService.getAllActors());
     }
 
     //gets an actor by its id
-    @GetMapping("/actor/{id}")
+    @GetMapping("api/actor/{id}")
     public Actor handleGetActorById(@PathVariable int id){
         return actorService.getActorById(id);
     }
