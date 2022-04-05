@@ -16,9 +16,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class jwtUtil {
 
-    @Value("${api.secrect_jwt}")
-    private String SERECT_KEY="secret"; //should be secret
-
     public String extractUserName(String token){
         return extractClaim(token, Claims::getSubject);
     }
@@ -32,7 +29,7 @@ public class jwtUtil {
     }
 
     private Claims extractAllClaims(String token){
-        return Jwts.parser().setSigningKey(SERECT_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey("SECRET").parseClaimsJws(token).getBody();
     }
 
     private Boolean isTokenExpired(String token){
@@ -47,7 +44,7 @@ public class jwtUtil {
     private String createToken(Map<String, Object> claims, String subject){
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*60*24))
-                .signWith(SignatureAlgorithm.HS256, SERECT_KEY).compact();
+                .signWith(SignatureAlgorithm.HS256, "SECRET").compact();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails){
