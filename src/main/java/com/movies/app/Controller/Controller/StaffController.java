@@ -4,7 +4,7 @@ import com.movies.app.Controller.Model.AuthenticationRequest;
 import com.movies.app.Controller.Model.AuthenticationResponse;
 import com.movies.app.Controller.Model.Staff;
 import com.movies.app.Controller.Service.StaffService;
-import com.movies.app.Controller.Util.jwtUtil;
+import com.movies.app.Controller.Util.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class StaffController {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private jwtUtil jwtUtil;
+    private JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
         public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) {
