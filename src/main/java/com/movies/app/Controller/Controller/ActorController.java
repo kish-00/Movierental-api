@@ -32,7 +32,7 @@ public class ActorController {
     }
 
     //gets an actor by its id
-    @GetMapping("api/actor/{id}")
+    @GetMapping("actorById/{id}")
     public Actor handleGetActorById(@PathVariable int id){
         return actorService.getActorById(id);
     }

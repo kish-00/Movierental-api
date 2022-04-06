@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -27,9 +28,11 @@ public class Rental {
     @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
+    @JsonIgnore
     @ManyToOne
     private Staff staff;
 
+    @JsonIgnore
     @ManyToOne
     private Customer customer;
 

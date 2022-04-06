@@ -3,6 +3,7 @@ package com.movies.app.Controller.Controller;
 import com.movies.app.Controller.Model.Category;
 import com.movies.app.Controller.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class CategoryController {
 
     //gets all categories
     @GetMapping("/categories")
-    public List<Category> handleGetAllCategories(){
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<Category>> handleGetAllCategories(){
+        return ResponseEntity.ok().body(categoryService.getAllCategories());
     }
 
     //gets a category by its id

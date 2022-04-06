@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -21,10 +22,11 @@ public class Store {
     @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "store")
     private List<Staff> staff;
 
+    @JsonIgnore
     @ManyToOne
     Address address;
 

@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 @Data
@@ -24,6 +26,7 @@ public class Category {
     @Column(name="lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Film> films;
 

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -39,9 +40,11 @@ public class Customer implements rentalInterface,paymentInterface {
     @Column(name = "createDate", nullable = false)
     private Timestamp createDate;
 
+    @JsonIgnore
     @ManyToOne
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Rental> rentals = new ArrayList<Rental>();
 

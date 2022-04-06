@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -44,15 +45,19 @@ public class Staff implements rentalInterface,paymentInterface {
     @Column(name = "pictureUrl", nullable = false)
     private String pictureUrl;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "staff")
     private List<Rental> rentals;
 
+    @JsonIgnore
     @ManyToOne
     private Address address;
 
+    @JsonIgnore
     @ManyToOne
     private Store store;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "staff")
     private List<Payment> payments;
 

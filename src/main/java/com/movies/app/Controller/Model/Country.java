@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -25,6 +26,7 @@ public class Country {
     @Column(name = "lastUpdate", nullable = false)
     private Timestamp lastUpdate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "country")
     private List<City> cities = new ArrayList<City>();
 

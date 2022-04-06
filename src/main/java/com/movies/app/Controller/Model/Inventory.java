@@ -3,6 +3,7 @@ package com.movies.app.Controller.Model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -20,6 +21,7 @@ public class Inventory {
     @Column(name = "lastUpdated", nullable = false)
     private Timestamp lastUpdated;
 
+    @JsonIgnore
     @ManyToOne
     private Film filmInventory;
 

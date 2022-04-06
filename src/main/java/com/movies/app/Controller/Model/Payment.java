@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -24,13 +25,14 @@ public class Payment {
     @Column(name = "paymentDate", nullable = false)
     private Date paymentDate;
 
-
+    @JsonIgnore
     @ManyToOne
     private Rental rental;
 
+    @JsonIgnore
     @ManyToOne
     private Customer customer;
-
+    @JsonIgnore
     @ManyToOne
     private Staff staff;
 

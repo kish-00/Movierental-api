@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Data
@@ -57,18 +58,21 @@ public class Film {
     @OneToMany(mappedBy = "filmInventory")
     private List<Inventory> inventories;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "film_actor",
             joinColumns = {@JoinColumn(name = "film_Id", referencedColumnName = "filmId", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "actor_Id",referencedColumnName = "actorId")})
     private List<Actor> actors;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "film_category",
             joinColumns = {@JoinColumn(name = "film_Id", referencedColumnName = "filmId", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "category_Id", referencedColumnName = "categoryId")})
     private List<Category> categories;
 
+    @JsonIgnore
     @ManyToOne
     private  Language language;
 

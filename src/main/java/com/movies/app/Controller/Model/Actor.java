@@ -1,5 +1,6 @@
 package com.movies.app.Controller.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Actor {
     @Column(name = "lastUpdate", nullable = false)
     private Timestamp timestamp;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "actors")
     private List<Film> films;
 
