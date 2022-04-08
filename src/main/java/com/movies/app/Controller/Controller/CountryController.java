@@ -31,7 +31,7 @@ public class CountryController {
     }
 
     //gets a country by its id
-    @GetMapping("/country/{id}")
+    @GetMapping("/countryByIdl/{id}")
     public Country handleGetCountryById(@PathVariable int id){
         return countryService.getCountryById(id);
     }
