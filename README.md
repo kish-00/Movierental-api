@@ -1,4 +1,4 @@
-# Movierenting api built with Spring Boot Security JWT Access Tokens
+# Movierenting api built with Spring Boot Security JWT Access Token
 
 ## Introduction
 
