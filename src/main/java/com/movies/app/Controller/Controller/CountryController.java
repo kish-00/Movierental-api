@@ -31,19 +31,19 @@ public class CountryController {
     }
 
     //gets a country by its id
-    @GetMapping("/countryByIdl/{id}")
+    @GetMapping("/getCountryId/{id}")
     public Country handleGetCountryById(@PathVariable int id){
         return countryService.getCountryById(id);
     }
 
     //get country by name
-    @GetMapping("/country/{name}")
+    @GetMapping("/getCountryName/{name}")
     public Country handleGetCountryByName(@PathVariable String name){
         return countryService.getCountryByName(name);
     }
     //update country
     @PutMapping("/updateCountry/{id}")
-    public Country handleUpdateCountry(int id, Country countryInfo){
+    public Country handleUpdateCountry(@PathVariable int id, @RequestBody Country countryInfo){
         return countryService.updateCountry(id, countryInfo);
     }
 

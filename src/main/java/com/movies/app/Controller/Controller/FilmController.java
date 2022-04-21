@@ -31,20 +31,20 @@ public class FilmController {
     }
 
     //gets a film by its id
-    @GetMapping("/film/{id}")
+    @GetMapping("/filmId/{id}")
     public Film handleGetFilmById(@PathVariable int id){
         return filmService.getFilmById(id);
     }
 
     //gets film by its title
-    @GetMapping("/film/{title}")
+    @GetMapping("/filmTitle/{title}")
     public Film handleGetFilmTitle(@PathVariable String title){
         return filmService.getFilmByTitle(title);
     }
 
     //update film Rest API
     @PutMapping("/updateFilm/{id}")
-    public Film handleUpdateFilm(int id, Film filmInfo){
+    public Film handleUpdateFilm(@PathVariable int id, @RequestBody Film filmInfo){
         return filmService.updateFilm(id, filmInfo);
     }
 

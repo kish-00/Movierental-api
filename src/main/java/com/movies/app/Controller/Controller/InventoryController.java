@@ -33,14 +33,14 @@ public class InventoryController {
     }
 
     //gets an inventory by its id
-    @GetMapping("/inventory/{id}")
+    @GetMapping("/inventoryId/{id}")
     public Inventory handleGetInventoryById(@PathVariable int id){
         return inventoryService.getInventoryById(id);
     }
 
     //update inventory Rest API
     @PutMapping("/updateInventory/{id}")
-    public Inventory handleUpdateInventory(int id, Inventory inventoryInfo){
+    public Inventory handleUpdateInventory(@PathVariable int id, @RequestBody Inventory inventoryInfo){
         return inventoryService.updateInventory(id, inventoryInfo);
     }
 

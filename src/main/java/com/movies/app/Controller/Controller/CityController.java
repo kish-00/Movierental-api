@@ -25,26 +25,26 @@ public class CityController {
     }
 
     //gets all cities
-    @GetMapping("/cities")
+    @GetMapping("/getcities")
     public List<City> handleGetAllCities(){
         return cityService.getAllCities();
     }
 
     //gets a city by its id
-    @GetMapping("/city/{id}")
+    @GetMapping("/getCityId/{id}")
     public City handleGetCityById(@PathVariable int id){
         return cityService.getCityById(id);
     }
 
     //gets city by name
-    @GetMapping("/city/{name}")
+    @GetMapping("/getCityName/{name}")
     public City handleGetCityByName (@PathVariable String name){
         return cityService.getCityByName(name);
     }
 
     //update city Rest API
     @PutMapping("/updateCity/{id}")
-    public City handleUpdateCity(int id, City cityInfo){
+    public City handleUpdateCity(@PathVariable int id, @RequestBody City cityInfo){
         return cityService.updateCity(id, cityInfo);
     }
 

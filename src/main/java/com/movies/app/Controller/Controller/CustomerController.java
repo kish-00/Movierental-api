@@ -31,26 +31,26 @@ public class CustomerController {
     }
 
     //gets a customer by its id
-    @GetMapping("/customer/{id}")
+    @GetMapping("/getCustomerId/{id}")
     public Customer handleGetCustomerById(@PathVariable int id){
         return customerService.getCustomerById(id);
     }
 
     //get customer by first name
-    @GetMapping("/customer/{firstName}")
+    @GetMapping("/getCustomerFirst/{firstName}")
     public Customer handleGetCustomerByFirstName(@PathVariable String firstName){
         return customerService.getCustomerByFirstName(firstName);
     }
 
     //get customer by last name
-    @GetMapping("/customer/{lastName}")
+    @GetMapping("/getCustomerLast/{lastName}")
     public Customer handleGetCustomerByLastName(@PathVariable String lastname){
         return customerService.getCustomerByLastName(lastname);
     }
 
     //update customer Rest API
     @PutMapping("/updateCustomer/{id}")
-    public Customer handleUpdateCustomer(int id, Customer customerInfo){
+    public Customer handleUpdateCustomer(@PathVariable int id, @RequestBody Customer customerInfo){
         return customerService.updateCustomer(id, customerInfo);
     }
 

@@ -26,26 +26,26 @@ public class CategoryController {
     }
 
     //gets all categories
-    @GetMapping("/categories")
+    @GetMapping("/getCategories")
     public ResponseEntity<List<Category>> handleGetAllCategories(){
         return ResponseEntity.ok().body(categoryService.getAllCategories());
     }
 
     //gets a category by its id
-    @GetMapping("/category/{id}")
+    @GetMapping("/getCategoryId/{id}")
     public Category handleGetCategoryById(@PathVariable int id){
         return categoryService.getCategoryById(id);
     }
 
     //get category by name of category
-    @GetMapping("/category/{name}")
+    @GetMapping("/getCategoryName/{name}")
     public Category handleGetCategoryByName(@PathVariable String name){
         return categoryService.getCategoryByName(name);
     }
 
     //update category Rest API
     @PutMapping("/updateCategory/{id}")
-    public Category handleUpdateCategory(int id, Category categoryInfo){
+    public Category handleUpdateCategory(@PathVariable int id, @RequestBody Category categoryInfo){
         return categoryService.updateCategory(id, categoryInfo);
     }
 

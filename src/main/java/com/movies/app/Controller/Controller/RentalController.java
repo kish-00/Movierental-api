@@ -31,14 +31,14 @@ public class RentalController {
     }
 
     //gets a rental by its id
-    @GetMapping("/rental/{id}")
+    @GetMapping("/rentalId/{id}")
     public Rental handleGetRentalById(@PathVariable int id){
         return rentalService.getRentalById(id);
     }
 
     //update rental Rest API
     @PutMapping("/updateRental/{id}")
-    public Rental handleUpdateRental(int id, Rental rentalInfo){
+    public Rental handleUpdateRental(@PathVariable int id, @RequestBody Rental rentalInfo){
         return rentalService.updateRental(id, rentalInfo);
     }
 

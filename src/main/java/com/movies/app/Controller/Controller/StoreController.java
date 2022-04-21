@@ -31,14 +31,14 @@ public class StoreController {
     }
 
     //gets a store by its id
-    @GetMapping("/store/{id}")
+    @GetMapping("/storeId/{id}")
     public Store handleGetStoreById(@PathVariable int id){
         return storeService.getStoreById(id);
     }
 
     //update store Rest API
     @PutMapping("/updateStore/{id}")
-    public Store handleUpdateStore(int id, Store storeInfo){
+    public Store handleUpdateStore(@PathVariable int id, @RequestBody Store storeInfo){
         return storeService.updateStore(id, storeInfo);
     }
 

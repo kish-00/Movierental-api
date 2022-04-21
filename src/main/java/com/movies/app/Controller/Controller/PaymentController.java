@@ -33,14 +33,14 @@ public class PaymentController {
     }
 
     //gets a payment by its id
-    @GetMapping(value = "/payment/{id}", consumes = "application/JSON", produces = "application/JSON")
+    @GetMapping(value = "/paymentId/{id}", consumes = "application/JSON", produces = "application/JSON")
     public Payment handleGetPaymentById(@PathVariable int id){
         return paymentService.getPaymentById(id);
     }
 
     //update payment Rest API
     @PutMapping(value = "/updatePayment/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public Payment handleUpdatePayment(int id, Payment paymentInfo){
+    public Payment handleUpdatePayment(@PathVariable int id, @RequestBody Payment paymentInfo){
         return paymentService.updatePayment(id, paymentInfo);
     }
 

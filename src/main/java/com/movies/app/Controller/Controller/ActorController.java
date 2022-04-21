@@ -51,7 +51,7 @@ public class ActorController {
 
     //update actor Rest API
     @PutMapping("/updateActor/{id}")
-    public Actor handleUpdateActor(int id, Actor actorInfo){
+    public Actor handleUpdateActor(@PathVariable int id, @RequestBody Actor actorInfo){
         return actorService.updateActor(id, actorInfo);
     }
 

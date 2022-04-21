@@ -62,26 +62,26 @@ public class StaffController {
     }
 
     //gets staff by username
-    @GetMapping(value = "staff/{userName}")
+    @GetMapping(value = "staffUserName/{userName}")
     public Staff handleGetStaffByUsername(@PathVariable String username){
         return staffService.getStaffByUsername(username);
     }
 
     //get staff by first name
-    @GetMapping(value = "/staff/{firstName}", produces = "application/json")
+    @GetMapping(value = "/staffFirst/{firstName}", produces = "application/json")
     public Staff handleGetStaffByFirstName(@PathVariable String firstName){
         return staffService.getStaffByFirstName(firstName);
     }
 
     //get staff by last name
-    @GetMapping(value = "/staff/{lastName}", produces = "application/json")
+    @GetMapping(value = "/staffLast/{lastName}", produces = "application/json")
     public Staff handleGetStaffByLastName(@PathVariable String lastname){
         return staffService.getStaffByLastName(lastname);
     }
 
     //update staff Rest API
     @PutMapping(value = "/updateStaff/{id}", consumes = "application/JSON", produces = "application/JSON")
-    public Staff handleUpdateStaff(int id, Staff staffInfo){
+    public Staff handleUpdateStaff(@PathVariable int id, @RequestBody Staff staffInfo){
         return staffService.updateStaff(id, staffInfo);
     }
 

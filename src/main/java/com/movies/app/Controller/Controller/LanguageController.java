@@ -33,19 +33,19 @@ public class LanguageController {
     }
 
     //gets a language by its id
-    @GetMapping("/language/{id}")
+    @GetMapping("/languageId/{id}")
     public Language handleGetLanguageById(@PathVariable int id){
         return languageService.getLanguageById(id);
     }
 
     //get language by name of language
-    @GetMapping("/language/{name}")
+    @GetMapping("/languageName/{name}")
     public Language handleGetLanguageByName(String name){
         return languageService.getLanguageByName(name);
     }
     //update language Rest API
     @PutMapping("/updateLanguage/{id}")
-    public Language handleUpdateLanguage(int id, Language languageInfo){
+    public Language handleUpdateLanguage(@PathVariable int id, @RequestBody Language languageInfo){
         return languageService.updateLanguage(id, languageInfo);
     }
 
