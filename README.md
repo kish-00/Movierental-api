@@ -25,3 +25,15 @@
 1. `mvn clean spring-boot:run`
 3. Point your browser to [http://localhost:8080/](http://localhost:8080/)
 
+## Screenshots
+-Login to get the access token.
+
+<img src = "https://github.com/kish-00/Movierental-api/blob/main/assets/authenticate.png" />
+
+-When you try to access an api endpoint without authentication.
+
+<img src = "https://github.com/kish-00/Movierental-api/blob/main/assets/unauthorized_access.png" />
+
+-Interacting with the API endpoints with authentication token.
+
+<img src = "https://github.com/kish-00/Movierental-api/blob/main/assets/getActorId.png" />
